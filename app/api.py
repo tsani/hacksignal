@@ -14,6 +14,12 @@ def get_tickets(ticket_type):
                 "SELECT * FROM Ticket "
                 "NATURAL JOIN Hacker "
                 "NATURAL JOIN TicketStatus;")
+    elif ticket_type == "open":
+        cur.execute(
+                "SELECT * FROM Ticket "
+                "NATURAL JOIN Hacker "
+                "NATURAL JOIN TicketStatus "
+                "WHERE ticketStatusName!='closed';")
     else:
         cur.execute(
                 "SELECT * FROM TicketStatus WHERE ticketStatusName=%s;",
@@ -21,7 +27,6 @@ def get_tickets(ticket_type):
 
         if not cur.rowcount:
             return jsonify( {
-                "records": None,
                 "status": "failed",
                 "message": "no such ticket status '%s'." % ticket_type
             } )
