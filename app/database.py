@@ -11,6 +11,51 @@ class Database:
                     for k in ['name', 'user', 'password', 'host']))
 
     @staticmethod
+    def get_tickets(selector):
+        conn = Database.get_connection()
+        cur = conn.cursor()
+
+        column_names = ['ticketId', 'ticketContents', 'ticketTableNumber',
+                'ticketStatusName', 'userId', 'userName', 'userEmail']
+        columns = ', '.join(column_names)
+
+        if selector == "all":
+            # then select all tickets
+            cur.execute(
+                    "SELECT " + columns + " FROM Ticket "
+                    "NATURAL JOIN Hacker NATURAL JOIN TicketStatus;")
+        elif selector == "open":
+            # then select all non-closed tickets
+            cur.execute(
+                    "SELECT " + columns + " FROM Ticket "
+                    "NATURAL JOIN Hacker "
+                    "NATURAL JOIN TicketStatus "
+                    "WHERE ticketStatusName!='closed';")
+        else:
+            # then try to look up the given selector
+            cur.execute(
+                    "SELECT * FROM TicketStatus WHERE ticketStatusName=%s;",
+                    (ticket_type,))
+
+            # if it does not exist
+            if not cur.rowcount:
+                raise ValueError(" no such ticket status '%s'." % selector)
+                #return jsonify( {
+                #    "status": "failed",
+                #    "message": "no such ticket status '%s'." % ticket_type
+                #} )
+
+            # get the tickets of that kind
+            cur.execute(
+                    "SELECT " + columns + " FROM Ticket "
+                    "NATURAL JOIN Hacker NATURAL JOIN TicketStatus "
+                    "WHERE ticketStatusName!=%s;", (ticket_type,))
+
+        records = [dict(zip(column_names, r)) for r in cur.fetchall()]
+        conn.close()
+        return records
+
+    @staticmethod
     def create_user_if_not_exists(name, email):
         """ Returns the id of the user. Raises a ValueError if the user
             already exists and the names don't match! """
