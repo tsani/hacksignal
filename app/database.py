@@ -128,3 +128,25 @@ class Database:
         with Database.get_connection() as conn:
             cur = conn.cursor()
             cur.execute("DELETE FROM Ticket WHERE ticketId=%s;", ticket_id)
+
+    @staticmethod
+    def delete_user(user_email=None, user_id=None):
+        """ Delete a user from the database, deleting all their associated
+            tickets. Deletion can be done by id or by email address, since both
+            uniquely identify a single user.
+        """
+        with Database.get_connection() as conn:
+            cur = conn.cursor()
+            if user_email is not None:
+                cur.execute("DELETE FROM User WHERE userEmail=%s;", user_email)
+            elif user_id is not None:
+                cur.execute("DELETE FROM User WHERE userId=%s;", user_id)
+            else:
+                raise TypeError("no criteria specified for account deletion")
+
+    @staticmethod
+    def get_ticket_status_names():
+        with Database.get_connection() as conn:
+            cur = conn.cursor()
+            cur.execute("SELECT ticketStatusName FROM TicketStatus;")
+            return [r[0] for r in cur.fetchall()]
