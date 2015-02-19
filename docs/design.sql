@@ -6,20 +6,20 @@ DROP TABLE IF EXISTS Ticket;
 
 CREATE TABLE Hacker (
     userId int PRIMARY KEY,
-    userName varchar(50),
-    userEmail varchar(256) UNIQUE
+    userName varchar(50) NOT NULL,
+    userEmail varchar(256) UNIQUE NOT NULL
 );
 
 CREATE TABLE TicketStatus (
     ticketStatusId SERIAL PRIMARY KEY,
-    ticketStatusName varchar(15) UNIQUE
+    ticketStatusName varchar(15) UNIQUE NOT NULL
 );
 
 CREATE TABLE Ticket (
     ticketId SERIAL PRIMARY KEY,
     userId int REFERENCES Hacker,
-    ticketContents varchar(150),
-    ticketStatusId int REFERENCES ticketStatus
+    ticketContents varchar(150) NOT NULL,
+    ticketStatusId int REFERENCES ticketStatus NOT NULL
 );
 
 INSERT INTO Hacker ( userId, userName, userEmail ) VALUES ( 0, 'null', 'no email' );
