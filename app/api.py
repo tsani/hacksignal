@@ -3,7 +3,6 @@ from app.database import Database
 
 from flask import jsonify
 
-
 @app.route('/api/tickets/get/<ticket_type>')
 def get_tickets(ticket_type):
     """ Fetch tickets of the given type from the database
@@ -55,7 +54,7 @@ def get_tickets(ticket_type):
 
         cur.execute(
                 "SELECT * FROM Ticket NATURAL JOIN Hacker NATURAL JOIN TicketStatus "
-                "WHERE ticketStatusName!=%s;", ticket_type)
+                "WHERE ticketStatusName!=%s;", (ticket_type,))
 
     # make the database output look like nice JSON
     records = []
@@ -70,4 +69,3 @@ def get_tickets(ticket_type):
         "records": records,
         "status": "ok",
     } )
-
