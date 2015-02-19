@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block contents %}
+<form action='{{ url_for("mentor_request") }}' method='POST'>
+    {{ form.hidden_tag() }}
+    <label>
+        Username:
+        {{ form.user_name() }}
+    </label>
+    <br>
+    <label>
+        Email:
+        {{ form.user_email() }}
+    </label>
+    <br>
+    <label>
+        Ticket contents:
+        {{ form.ticket_contents() }}
+    </label>
+    <br>
+    <label>
+        Table number:
+        {{ form.ticket_table_number() }}
+    </label>
+    <br>
+    <input type='submit'>
+</form>
+{% endblock %}
