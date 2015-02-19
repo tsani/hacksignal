@@ -106,3 +106,19 @@ class Database:
         conn.commit()
         (ticket_id,) = cur.fetchone()
         return ticket_id
+
+    @staticmethod
+    def update_ticket_status(ticket_id, ticket_status_name):
+        conn = Database.get_connection()
+        cur = conn.cursor()
+        cur.execute("SELECT ticketStatusId FROM TicketStatus "
+                "WHERE ticketStatusName=%s;",
+                (ticket_status_name,))
+        if not cur.rowcount:
+            raise ValueError("invalid ticket status name %s" %
+                    (ticket_status_name,))
+        (ticket_status_id,) = cur.fetchone()[0]
+        cur.execute("UPDATE Ticket SET ( ticketStatusId ) = ( %s ) "
+                "WHERE ticketId=%s;",
+                (ticket_statis_id, ticket_id))
+        conn.commit()

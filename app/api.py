@@ -1,7 +1,9 @@
 from app import app
 from app.database import Database
 
-from flask import jsonify
+from flask import jsonify, request
+
+from app.auth import requires_auth
 
 @app.route('/api/tickets/get/<ticket_type>')
 def get_tickets(ticket_type):
@@ -37,3 +39,27 @@ def get_tickets(ticket_type):
         "records": records,
         "status": "ok",
     } )
+
+@app.route('/api/tickets/modify/<id>', methods=['POST'])
+@requires_auth
+def modify_ticket(ticket_id):
+    request_data = request.get_json()
+
+    if 'ticketStatusName' not in request_data:
+        return jsonify( {
+            "status": "failed",
+            "message": "no new ticket status given"
+        })
+
+    try:
+        Database.update_ticket_status(
+                ticket_id, request_data['ticketstatusname'])
+    except ValueError as e:
+        return jsonify( {
+            "status": "failed",
+            "message": str(e)
+        })
+
+    return jsonify( {
+        "status": "ok",
+    })
