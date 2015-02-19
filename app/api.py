@@ -78,3 +78,22 @@ def delete_ticket(ticket_id):
         return jsonify( {
             "status": "ok"
         })
+
+@app.route('/api/users/delete', methods=['POST'])
+@requires_auth
+def delete_user():
+    request_data = request.get_json()
+
+    if 'userEmail' in request_data:
+        Database.delete_user(user_email=request_data['userEmail'])
+    elif 'userId' in request_data:
+        Database.delete_user(user_id=request_data['userId'])
+    else:
+        return jsonify( {
+            "status": "failed",
+            "message": "you need to specify either the userEmail or userId"
+        })
+
+    return jsonify( {
+        "status": "ok",
+    })
