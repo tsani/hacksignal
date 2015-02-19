@@ -10,7 +10,7 @@ class Database:
         if Database.connection is None:
             Database.connection = psycopg2.connect(
                     "dbname='%s' user='%s' password='%s' host='%s'" %
-                    tuple(app.secrets['database'][k]
+                    tuple(app.config['DATABASE'][k]
                         for k in ['name', 'user', 'password', 'host']))
         return Database.connection
 

@@ -1,3 +1,3 @@
 venv/
-secrets.json
+secret_config.py
 *.pyc
