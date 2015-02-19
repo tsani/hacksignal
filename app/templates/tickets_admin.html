@@ -2,15 +2,17 @@
 
 {% block contents %}
 
-<dl id='tickets-list'>
+<div>
+    <div id='tickets-list'>
     {% for ticket in tickets %}
-        <p>
-        {% for (k, v) in ticket.items() %}
-        <dt> {{ k }} </dt>
-        <dd> {{ v }} </dt>
-        {% endfor %}
-        </p>
+    <h3> {{ ticket.userName }} ( {{ ticket.userEmail }} ) </h3>
+    <p>table {{ ticket.ticketTableNumber }}</p>
+    <p>{{ ticket.ticketContents }}</p>
+        <button onclick="mentorship.sendDeleteTicket({{ ticket.ticketId }});">
+            Delete
+        </button>
     {% endfor %}
-</dl>
+    </div>
+</div>
 
 {% endblock %}

@@ -63,3 +63,18 @@ def modify_ticket(ticket_id):
     return jsonify( {
         "status": "ok",
     })
+
+@app.route('/api/tickets/delete/<ticket_id>', methods=['POST'])
+@requires_auth
+def delete_ticket(ticket_id):
+    try:
+        Database.delete_ticket(ticket_id)
+    except Exception as e:
+        return jsonify( {
+            "status": "failed",
+            "message": str(e)
+        })
+    else:
+        return jsonify( {
+            "status": "ok"
+        })

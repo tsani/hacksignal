@@ -122,3 +122,9 @@ class Database:
                 "WHERE ticketId=%s;",
                 (ticket_statis_id, ticket_id))
         conn.commit()
+
+    @staticmethod
+    def delete_ticket(ticket_id):
+        with Database.get_connection() as conn:
+            cur = conn.cursor()
+            cur.execute("DELETE FROM Ticket WHERE ticketId=%s;", ticket_id)
