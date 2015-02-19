@@ -3,8 +3,8 @@ from functools import wraps
 from flask import request, Response
 
 def check_auth(username, password):
-    return username == app.config['authentication']['username'] \
-            and password == app.config['authentication']['password']
+    return username == app.config['AUTHENTICATION']['username'] \
+            and password == app.config['AUTHENTICATION']['password']
 
 def authenticate():
     """Sends a 401 response that enables basic auth"""
