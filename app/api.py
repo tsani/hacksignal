@@ -53,7 +53,8 @@ def get_tickets(ticket_type):
             } )
 
         cur.execute(
-                "SELECT * FROM Ticket NATURAL JOIN Hacker NATURAL JOIN TicketStatus "
+                "SELECT * FROM Ticket "
+                "NATURAL JOIN Hacker NATURAL JOIN TicketStatus "
                 "WHERE ticketStatusName!=%s;", (ticket_type,))
 
     # make the database output look like nice JSON
