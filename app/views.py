@@ -35,3 +35,10 @@ def mentor_request():
     return render_template('help.html',
             title='Mentor me!',
             form=form)
+
+@app.route('/admin')
+@requires_auth
+def admin_panel():
+    tickets = Database.get_tickets('all')
+    return render_template('tickets_admin.html',
+            tickets=tickets)

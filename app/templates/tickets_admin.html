@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block contents %}
+
+<dl id='tickets-list'>
+    {% for ticket in tickets %}
+        <p>
+        {% for (k, v) in ticket.items() %}
+        <dt> {{ k }} </dt>
+        <dd> {{ v }} </dt>
+        {% endfor %}
+        </p>
+    {% endfor %}
+</dl>
+
+{% endblock %}
