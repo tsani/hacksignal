@@ -49,7 +49,7 @@ class Database:
             cur.execute(
                     "SELECT " + columns + " FROM Ticket "
                     "NATURAL JOIN Hacker NATURAL JOIN TicketStatus "
-                    "WHERE ticketStatusName!=%s;", (selector,))
+                    "WHERE ticketStatusName=%s;", (selector,))
 
         records = [dict(zip(column_names, r)) for r in cur.fetchall()]
         conn.close()
