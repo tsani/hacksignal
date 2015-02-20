@@ -157,3 +157,5 @@ API
     The rationale for allowing both ids and emails is that both are unique.
 
     Note: this also deletes all the tickets owned by the user.
+
+    Note: this endpoint requires HTTP basic authentication.
