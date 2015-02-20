@@ -64,6 +64,14 @@ def modify_ticket(ticket_id):
         "status": "ok",
     })
 
+@app.route('/api/ticketstatus/list', methods=['GET'])
+def ticket_status_list():
+    names = Database.get_ticket_status_names()
+    return jsonify( {
+        "status": "ok",
+        "ticketStatusNames": names
+    })
+
 @app.route('/api/tickets/delete/<ticket_id>', methods=['POST'])
 @requires_auth
 def delete_ticket(ticket_id):
