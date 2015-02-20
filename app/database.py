@@ -108,20 +108,31 @@ class Database:
         return ticket_id
 
     @staticmethod
-    def update_ticket_status(ticket_id, ticket_status_name):
-        conn = Database.get_connection()
-        cur = conn.cursor()
-        cur.execute("SELECT ticketStatusId FROM TicketStatus "
-                "WHERE ticketStatusName=%s;",
-                (ticket_status_name,))
-        if not cur.rowcount:
-            raise ValueError("invalid ticket status name %s" %
-                    (ticket_status_name,))
-        (ticket_status_id,) = cur.fetchone()[0]
-        cur.execute("UPDATE Ticket SET ( ticketStatusId ) = ( %s ) "
-                "WHERE ticketId=%s;",
-                (ticket_statis_id, ticket_id))
-        conn.commit()
+    def update_ticket_status(ticket_id, ticket_status_name=None,
+            ticket_status_id=None):
+        if ticket_status_name is not None and ticket_status_id is not None:
+            raise ValueError("both ticketStatusName and ticketStatusId "
+                    "specified as ticket update criteria")
+        with Database.get_connection() as conn:
+            cur = conn.cursor()
+            if ticket_status_name is not None:
+                cur.execute("SELECT ticketStatusId FROM TicketStatus "
+                        "WHERE ticketStatusName=%s;",
+                        (ticket_status_name,))
+                if not cur.rowcount:
+                    raise ValueError("invalid ticket status name %s" %
+                            (ticket_status_name,))
+                ticket_status_id = cur.fetchone()
+                cur.execute("UPDATE Ticket SET ( ticketStatusId ) = ( %s ) "
+                        "WHERE ticketId=%s;",
+                        (ticket_status_id, ticket_id))
+            elif ticket_status_id is not None:
+                cur.execute("UPDATE Ticket SET ( ticketStatusId ) = ( %s ) "
+                        "WHERE ticketId=%s;",
+                        (ticket_status_id, ticket_id))
+            else:
+                raise ValueError("neither ticketStatusName nor ticketStatusId "
+                        "specified as ticket udpate criteria")
 
     @staticmethod
     def delete_ticket(ticket_id):
