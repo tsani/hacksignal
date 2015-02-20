@@ -35,7 +35,7 @@ class Database:
             # then try to look up the given selector
             cur.execute(
                     "SELECT * FROM TicketStatus WHERE ticketStatusName=%s;",
-                    (ticket_type,))
+                    (selector,))
 
             # if it does not exist
             if not cur.rowcount:
@@ -49,7 +49,7 @@ class Database:
             cur.execute(
                     "SELECT " + columns + " FROM Ticket "
                     "NATURAL JOIN Hacker NATURAL JOIN TicketStatus "
-                    "WHERE ticketStatusName!=%s;", (ticket_type,))
+                    "WHERE ticketStatusName!=%s;", (selector,))
 
         records = [dict(zip(column_names, r)) for r in cur.fetchall()]
         conn.close()
