@@ -11,7 +11,7 @@ class Database:
                     for k in ['name', 'user', 'password', 'host']))
 
     @staticmethod
-    def get_tickets(selector):
+    def list_tickets(selector):
         conn = Database.get_connection()
         cur = conn.cursor()
 
@@ -54,6 +54,19 @@ class Database:
         records = [dict(zip(column_names, r)) for r in cur.fetchall()]
         conn.close()
         return records
+
+    @staticmethod
+    def get_ticket(ticket_id):
+        column_names = ['ticketId', 'ticketContents', 'ticketTableNumber',
+                'ticketStatusName', 'userId', 'userName', 'userEmail']
+        columns = ', '.join(column_names)
+
+        with Database.get_connection() as conn:
+            cur = conn.cursor()
+            cur.execute("SELECT " + columns + " FROM Ticket "
+                    "NATURAL JOIN Hacker NATURAL JOIN TicketStatus "
+                    "WHERE ticketId=%s;", ticket_id)
+            return dict(zip(column_names, cur.fetchone()))
 
     @staticmethod
     def create_user_if_not_exists(name, email):

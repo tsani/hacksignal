@@ -5,7 +5,7 @@ from flask import jsonify, request
 
 from app.auth import requires_auth
 
-@app.route('/api/tickets/get/<ticket_type>')
+@app.route('/api/tickets/list/<ticket_type>')
 def get_tickets(ticket_type):
     """ Fetch tickets of the given type from the database
         Ticket types are:
@@ -33,12 +33,16 @@ def get_tickets(ticket_type):
     cur = conn.cursor()
 
     # make the database output look like nice JSON
-    records = Database.get_tickets(ticket_type)
+    records = Database.list_tickets(ticket_type)
 
     return jsonify( {
         "records": records,
         "status": "ok",
     } )
+
+@app.route('/api/tickets/get/<ticket_id>', methods=['GET'])
+def get_ticket(ticket_id):
+    return jsonify(Database.get_ticket(ticket_id))
 
 @app.route('/api/tickets/modify/<ticket_id>', methods=['POST'])
 @requires_auth

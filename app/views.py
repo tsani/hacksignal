@@ -36,9 +36,16 @@ def mentor_request():
             title='Mentor me!',
             form=form)
 
-@app.route('/admin')
+@app.route('/admin', defaults={'ticket_status': 'all'})
+@app.route('/admin/<ticket_status>')
 @requires_auth
-def admin_panel():
-    tickets = Database.get_tickets('all')
+def admin_panel(ticket_status):
+    try:
+        tickets = Database.list_tickets(ticket_status)
+    except ValueError:
+        return render_template('message.html', message=str(e))
+
+    ticket_statuses = Database.get_ticket_status_names()
     return render_template('tickets_admin.html',
-            tickets=tickets)
+            tickets=tickets,
+            ticket_statuses=ticket_statuses)

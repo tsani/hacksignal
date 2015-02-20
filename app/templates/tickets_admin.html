@@ -2,17 +2,43 @@
 
 {% block contents %}
 
-<div>
-    <div id='tickets-list'>
+    <ul id='tickets-list'>
     {% for ticket in tickets %}
-    <h3> {{ ticket.userName }} ( {{ ticket.userEmail }} ) </h3>
-    <p>table {{ ticket.ticketTableNumber }}</p>
-    <p>{{ ticket.ticketContents }}</p>
-        <button onclick="mentorship.sendDeleteTicket({{ ticket.ticketId }});">
-            Delete
-        </button>
+        {# The id for the li is very important, see environment.js #}
+        <li id='ticket-list-item-{{ ticket.ticketId }}'>
+            <p class='tl-username'>
+            {{ ticket.userName }} ( {{ ticket.userEmail }} )
+            </p>
+
+            <p class='tl-ticketstatus'>
+            {{ ticket.ticketStatusName }}
+            </p>
+
+            <p class='tl-tablenumber'>
+            table #{{ ticket.ticketTableNumber }}
+            </p>
+
+            <p class='tl-ticketcontents'>{{ ticket.ticketContents }}</p>
+
+            <button
+                onclick="mentorship.sendDeleteTicket({{ ticket.ticketId }});">
+                Delete
+            </button>
+
+            <select class='tl-status' autocomplete='off'
+                onchange="mentorship.sendModifyTicket({{ ticket.ticketId }});">
+                {% for ticket_status in ticket_statuses %}
+                {% if ticket_status == ticket.ticketStatusName %}
+                <option value='{{ ticket_status }}' selected='selected'>
+                {% else %}
+                <option value='{{ ticket_status }}'>
+                {% endif %}
+                {{ ticket_status }}
+                </option>
+                {% endfor %}
+            </select>
+        </li>
     {% endfor %}
-    </div>
-</div>
+    </ul>
 
 {% endblock %}
