@@ -40,10 +40,10 @@ def get_tickets(ticket_type):
         "status": "ok",
     } )
 
-@app.route('/api/tickets/modify/<id>', methods=['POST'])
+@app.route('/api/tickets/modify/<ticket_id>', methods=['POST'])
 @requires_auth
 def modify_ticket(ticket_id):
-    request_data = request.get_json()
+    request_data = request.get_json(force=True)
 
     if 'ticketStatusName' not in request_data:
         return jsonify( {
@@ -53,7 +53,7 @@ def modify_ticket(ticket_id):
 
     try:
         Database.update_ticket_status(
-                ticket_id, request_data['ticketstatusname'])
+                ticket_id, request_data['ticketStatusName'])
     except ValueError as e:
         return jsonify( {
             "status": "failed",
