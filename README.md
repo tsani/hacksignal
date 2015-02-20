@@ -3,6 +3,71 @@ McHacks Mentorship Platform
 
 The one-of-a-kind unique and amazing McHacks mentor dispatching service !
 
+Setup
+=====
+
+To set up the package, you'll need a recent version of PostgreSQL, and python 3.
+
+1. Creating the database.
+
+    Open the PostgreSQL REPL and create the mchacks user and database.
+
+        $ psql -U postgres
+
+        postgres=# CREATE USER mchacks;
+        CREATE USER
+        postgres=# CREATE DATABASE mchacks;
+        CREATE DATABASE
+        postgres=# \q
+
+    Then, load the schema.
+
+        $ psql -U mchacks < docs/design.sql
+
+2. The Python virtual environment.
+
+    Set up a python 3 virtualenv called `venv`, activate it, and install the
+    required packages.
+
+        $ virtualenv venv --python=/usr/bin/path/to/your/python3/interpreter
+        $ source venv/bin/activate
+        (venv) $ pip install -r requirements.txt
+
+3. Tell us your secrets.
+
+    You need to write a small configuration module called `secret_configs.py`
+    in the project root. Its contents should look something like the following.
+
+        DATABASE = {
+                "user": "mchacks",
+                "password": "seeeeekret",
+                "name": "mchacks",
+                "host": "localhost"
+        }
+
+        AUTHENTICATION = {
+                "username": "1337hacker",
+                "password": "sup3rs3cr3t"
+        }
+
+        SECRET_KEY = "annoy-everyone-with-this-one-weird-trick"
+
+    The `AUTHENTICATION` dictionary is used for the HTTP basic auth implemented
+    for the administration panel.
+
+3. Running the server.
+
+    To run the server, we deploy it with Gunicorn, which will have been
+    installed to your virtualenv by pip. A script `gunicorn.sh` is provided for
+    your convenience. If you get a failed to bind error message, change the
+    port in `gunicorn.sh`. You can also configure Gunicorn settings in there.
+
+        $ ./gunicorn.sh
+
+
+And there you go!
+
+
 API
 =====
 
