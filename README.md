@@ -6,7 +6,7 @@ The one-of-a-kind unique and amazing McHacks mentor dispatching service !
 API
 =====
 
-1. `/api/tickets/get/<status>` (GET)
+1. `/api/tickets/list/<status>` (GET)
 
     Fetch tickets of the given type from the database
 
@@ -44,7 +44,14 @@ API
             "userEmail": "theiremail@somehost.website"
         }
 
-2. `/api/tickets/modify/<id>` (POST)
+2. `/api/tickets/get/<id>` (GET)
+
+    Get details on the identified ticket.
+
+    The result is a single ticket record in the format described in
+    `/api/tickets/list/<status>`.
+
+3. `/api/tickets/modify/<id>` (POST)
 
     Change the given ticket's status.
 
@@ -57,10 +64,31 @@ API
 
     Note: this endpoint requires HTTP basic authentication.
 
-3. `/api/tickets/delete/<id>` (POST)
+4. `/api/tickets/delete/<id>` (POST)
 
     Delete the given ticket.
 
     The body of the request should be empty.
 
     Note: this endpoint requires HTTP basic authentication.
+
+5. `/api/users/delete` (POST)
+
+    Delete the user identified by the criterion given in the request body.
+
+    The request body should be JSON representing an object of the following
+    form.
+
+        {
+            "userEmail": "email@address.com"
+        }
+
+    or
+
+        {
+            "userId": 123
+        }
+
+    The rationale for allowing both ids and emails is that both are unique.
+
+    Note: this also deletes all the tickets owned by the user.
