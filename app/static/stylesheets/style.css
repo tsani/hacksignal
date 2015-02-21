@@ -3,10 +3,57 @@
 body {
     margin: 70px;
     padding: 0;
-    background-color: #ccc;
+    background-color: #eee;
     font-family: Roboto, sans-serif;
+    color: #222;
+    overflow-x: hidden;
 }
 
 label {
-    margin: 20px;
+	display: block;
+    margin: 5px;
+}
+
+#submit-plz {
+	width: 100px;
+	padding: 20px;
+}
+
+.errors-area li {
+	color: red;
+}
+
+.tl-ticketstatus {
+	font-weight: 900;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+#tickets-list {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#tickets-list li {
+	border-bottom: 1px #ccc solid;
+	list-style-type: none;
+	padding: 20px 40px;
+	margin: 0;
+}
+
+.ticket-list-type-pending {
+	background-color: #CC543D;
+}
+
+.ticket-list-type-confirmed {
+	background-color: #FFFC54;
+}
+
+.ticket-list-type-sent {
+	background-color: #38FF6D;
+}
+
+.ticket-list-type-closed {
+	background-color: #437FB2;
 }

@@ -1,10 +1,11 @@
 {% extends "layout.html" %}
 
+{% block contents %}
+
 <h1>McMentor Me!</h1>
 
-<h3>Fill out the mentorship form and a dedicated McMentor will meet you at your table. For bugs and emergencies: <a href="mailto:ari@mchacks.io">ari@mchacks.io</a></h3>
+<p>Fill out the mentorship form and a dedicated McMentor will meet you at your table. For bugs and emergencies: <a href="mailto:ari@mchacks.io">ari@mchacks.io</a></p>
 
-{% block contents %}
 <form action='{{ url_for("mentor_request") }}' method='POST'>
     {{ form.hidden_tag() }}
     <label>
@@ -33,7 +34,7 @@
     <br>
     <label>
         I need help with...(please give keywords like "iOS" or "Ruby")
-        {{ form.ticket_contents() }}
+        <div style="display:block; margin: 10px;">{{ form.ticket_contents() }}</div>
         {% if form.ticket_contents.errors %}
         <ul class="errors-area">
         {% for error in form.ticket_contents.errors %}
@@ -55,6 +56,6 @@
         {% endif %}
     </label>
     <br>
-    <input type='submit'>
+    <input id='submit-plz' type='submit'>
 </form>
 {% endblock %}

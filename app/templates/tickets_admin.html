@@ -2,10 +2,13 @@
 
 {% block contents %}
 
+<h1>McMentor Mama</h1>
+
     <ul id='tickets-list'>
     {% for ticket in tickets %}
         {# The id for the li is very important, see environment.js #}
-        <li id='ticket-list-item-{{ ticket.ticketId }}'>
+        <li id='ticket-list-item-{{ ticket.ticketId }}'
+                class='ticket-list-type-{{ ticket.ticketStatusName }}'>
             <p class='tl-username'>
             {{ ticket.userName }} ( {{ ticket.userEmail }} )
             </p>
@@ -20,13 +23,18 @@
 
             <p class='tl-ticketcontents'>{{ ticket.ticketContents }}</p>
 
+            {% if ticket.ticketMentorData == None %}
+            <textarea class='tl-ticketmentordata'></textarea>
+            {% else %}
+            <textarea class='tl-ticketmentordata' autocomplete='off'>{{ ticket.ticketMentorData }}</textarea>
+            {% endif %}
+
             <button
                 onclick="mentorship.sendDeleteTicket({{ ticket.ticketId }});">
-                Delete
+                Nuke it
             </button>
 
-            <select class='tl-status' autocomplete='off'
-                onchange="mentorship.sendModifyTicket({{ ticket.ticketId }});">
+            <select class='tl-status' autocomplete='off'>
                 {% for ticket_status in ticket_statuses %}
                 {% if ticket_status == ticket.ticketStatusName %}
                 <option value='{{ ticket_status }}' selected='selected'>
@@ -37,6 +45,11 @@
                 </option>
                 {% endfor %}
             </select>
+
+            <button
+                onclick="mentorship.sendModifyTicket({{ ticket.ticketId }});">
+                Update
+            </button>
         </li>
     {% endfor %}
     </ul>
