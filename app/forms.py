@@ -1,5 +1,5 @@
 from app import app
-from flask.ext.wtf import Form
+from flask.ext.wtf import Form, RecaptchaField
 from wtforms import StringField, IntegerField, TextAreaField
 from wtforms.validators import Email, Length, DataRequired, NumberRange
 
@@ -12,3 +12,4 @@ class MentorRequestForm(Form):
         DataRequired(), Length(max=150)])
     ticket_table_number = IntegerField('Table number', validators=[
         DataRequired(), NumberRange(min=0, max=1337)])
+    recaptcha = RecaptchaField()

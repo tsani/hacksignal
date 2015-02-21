@@ -56,6 +56,17 @@
         {% endif %}
     </label>
     <br>
+    <label>
+        Are you even human?
+        <div style="display:block; margin: 10px;">{{ form.recaptcha() }}</div>
+        {% if form.recaptcha.errors %}
+        <ul class="errors-area">
+        {% for error in form.recaptcha.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    </label>
     <input id='submit-plz' type='submit'>
 </form>
 {% endblock %}
