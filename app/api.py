@@ -49,7 +49,6 @@ def get_ticket(ticket_id):
 def modify_ticket(ticket_id):
     did_something = False
     request_data = request.get_json(force=True)
-    print request_data
 
     if 'ticketStatusName' in request_data:
         did_something = True
