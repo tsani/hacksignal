@@ -65,7 +65,7 @@ class Database:
             cur = conn.cursor()
             cur.execute("SELECT " + columns + " FROM Ticket "
                     "NATURAL JOIN Hacker NATURAL JOIN TicketStatus "
-                    "WHERE ticketId=%s;", ticket_id)
+                    "WHERE ticketId=%s;", (ticket_id,))
             return dict(zip(column_names, cur.fetchone()))
 
     @staticmethod
@@ -151,7 +151,7 @@ class Database:
     def delete_ticket(ticket_id):
         with Database.get_connection() as conn:
             cur = conn.cursor()
-            cur.execute("DELETE FROM Ticket WHERE ticketId=%s;", ticket_id)
+            cur.execute("DELETE FROM Ticket WHERE ticketId=%s;", (ticket_id,))
 
     @staticmethod
     def delete_user(user_email=None, user_id=None):
@@ -162,9 +162,11 @@ class Database:
         with Database.get_connection() as conn:
             cur = conn.cursor()
             if user_email is not None:
-                cur.execute("DELETE FROM User WHERE userEmail=%s;", user_email)
+                cur.execute("DELETE FROM User WHERE userEmail=%s;",
+                        (user_email,))
             elif user_id is not None:
-                cur.execute("DELETE FROM User WHERE userId=%s;", user_id)
+                cur.execute("DELETE FROM User WHERE userId=%s;",
+                        (user_id,))
             else:
                 raise TypeError("no criteria specified for account deletion")
 
