@@ -41,9 +41,9 @@ CREATE TABLE Ticket (
         varchar(500)
 );
 
-INSERT INTO TicketStatus ( ticketStatusName ) VALUES ( 'sent' );
 INSERT INTO TicketStatus ( ticketStatusName ) VALUES ( 'pending' );
 INSERT INTO TicketStatus ( ticketStatusName ) VALUES ( 'confirmed' );
+INSERT INTO TicketStatus ( ticketStatusName ) VALUES ( 'sent' );
 INSERT INTO TicketStatus ( ticketStatusName ) VALUES ( 'closed' );
 
 COMMIT;
