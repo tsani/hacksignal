@@ -3,6 +3,10 @@ from app import app
 import psycopg2
 
 class Database:
+    ticket_data_columns = ['ticketId', 'ticketContents', 'ticketTableNumber',
+                'ticketStatusName', 'ticketMentorData', 'userId', 'userName',
+                'userEmail']
+
     @staticmethod
     def get_connection():
         return psycopg2.connect(
@@ -15,22 +19,21 @@ class Database:
         conn = Database.get_connection()
         cur = conn.cursor()
 
-        column_names = ['ticketId', 'ticketContents', 'ticketTableNumber',
-                'ticketStatusName', 'userId', 'userName', 'userEmail']
-        columns = ', '.join(column_names)
+        columns = ', '.join(Database.ticket_data_columns)
 
         if selector == "all":
             # then select all tickets
             cur.execute(
                     "SELECT " + columns + " FROM Ticket "
-                    "NATURAL JOIN Hacker NATURAL JOIN TicketStatus;")
+                    "NATURAL JOIN Hacker NATURAL JOIN TicketStatus ORDER BY ticketStatusId;")
         elif selector == "open":
             # then select all non-closed tickets
             cur.execute(
                     "SELECT " + columns + " FROM Ticket "
                     "NATURAL JOIN Hacker "
                     "NATURAL JOIN TicketStatus "
-                    "WHERE ticketStatusName!='closed';")
+                    "WHERE ticketStatusName!='closed' "
+                    "ORDER BY ticketStatusId;")
         else:
             # then try to look up the given selector
             cur.execute(
@@ -49,24 +52,24 @@ class Database:
             cur.execute(
                     "SELECT " + columns + " FROM Ticket "
                     "NATURAL JOIN Hacker NATURAL JOIN TicketStatus "
-                    "WHERE ticketStatusName=%s;", (selector,))
+                    "WHERE ticketStatusName=%s "
+                    "ORDER BY ticketStatusId;", (selector,))
 
-        records = [dict(zip(column_names, r)) for r in cur.fetchall()]
+        records = [dict(zip(Database.ticket_data_columns, r))
+                for r in cur.fetchall()]
         conn.close()
         return records
 
     @staticmethod
     def get_ticket(ticket_id):
-        column_names = ['ticketId', 'ticketContents', 'ticketTableNumber',
-                'ticketStatusName', 'userId', 'userName', 'userEmail']
-        columns = ', '.join(column_names)
+        columns = ', '.join(Database.ticket_data_columns)
 
         with Database.get_connection() as conn:
             cur = conn.cursor()
             cur.execute("SELECT " + columns + " FROM Ticket "
                     "NATURAL JOIN Hacker NATURAL JOIN TicketStatus "
                     "WHERE ticketId=%s;", (ticket_id,))
-            return dict(zip(column_names, cur.fetchone()))
+            return dict(zip(Database.ticket_data_columns, cur.fetchone()))
 
     @staticmethod
     def create_user_if_not_exists(name, email):
@@ -146,6 +149,13 @@ class Database:
             else:
                 raise ValueError("neither ticketStatusName nor ticketStatusId "
                         "specified as ticket udpate criteria")
+
+    @staticmethod
+    def update_ticket_data(ticket_id, ticket_data):
+        with Database.get_connection() as conn:
+            cur = conn.cursor()
+            cur.execute("UPDATE Ticket SET ( ticketMentorData ) = ( %s ) "
+                    "WHERE ticketId=%s;", (ticket_data, ticket_id))
 
     @staticmethod
     def delete_ticket(ticket_id):

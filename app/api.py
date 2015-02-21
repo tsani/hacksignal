@@ -47,21 +47,31 @@ def get_ticket(ticket_id):
 @app.route('/api/tickets/modify/<ticket_id>', methods=['POST'])
 @requires_auth
 def modify_ticket(ticket_id):
+    did_something = False
     request_data = request.get_json(force=True)
+    print request_data
 
-    if 'ticketStatusName' not in request_data:
+    if 'ticketStatusName' in request_data:
+        did_something = True
+        try:
+            Database.update_ticket_status(
+                    ticket_id, request_data['ticketStatusName'])
+        except ValueError as e:
+            return jsonify( {
+                "status": "failed",
+                "message": "could not update ticket status: " + str(e)
+            })
+
+    if 'ticketMentorData' in request_data:
+        did_something = True
+        Database.update_ticket_data(
+                ticket_id, request_data['ticketMentorData'])
+
+    if not did_something:
         return jsonify( {
             "status": "failed",
-            "message": "no new ticket status given"
-        })
-
-    try:
-        Database.update_ticket_status(
-                ticket_id, request_data['ticketStatusName'])
-    except ValueError as e:
-        return jsonify( {
-            "status": "failed",
-            "message": str(e)
+            "message": "supply one of ticketStatusName or ticketMentorData"
+                        " to modify."
         })
 
     return jsonify( {

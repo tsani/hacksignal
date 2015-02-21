@@ -17,11 +17,15 @@ mentorship = (function() {
         },
         sendModifyTicket: function(ticketId) {
             ticketStatusName = $.trim(
-                $("#ticket-list-item-" + ticketId + " > select")
-                .find(":selected").text());
-            console.log(ticketStatusName);
+                    $("#ticket-list-item-" + ticketId + " > select")
+                    .find(":selected").text());
+            ticketMentorData = $.trim(
+                    $("#ticket-list-item-" + ticketId + " > textarea")
+                    .val())
+            console.log(ticketStatusName, ticketMentorData);
             $.post('/api/tickets/modify/' + ticketId, JSON.stringify({
-                ticketStatusName: ticketStatusName
+                ticketStatusName: ticketStatusName,
+                ticketMentorData: ticketMentorData
             }), function(response) {
                 console.log(response.status);
                 location.reload();

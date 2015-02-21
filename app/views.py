@@ -41,6 +41,8 @@ def admin_panel(ticket_status):
     except ValueError:
         return render_template('message.html', message=str(e))
 
+    print tickets
+
     ticket_statuses = Database.get_ticket_status_names()
     return render_template('tickets_admin.html',
             tickets=tickets,
