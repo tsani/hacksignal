@@ -36,20 +36,14 @@ CREATE TABLE Ticket (
         int REFERENCES ticketStatus NOT NULL,
     ticketCreationTime
         timestamp without time zone NOT NULL
-        default (now() at time zone 'utc')
+        default (now() at time zone 'utc'),
+    ticketMentorData
+        varchar(500)
 );
-
-INSERT INTO Hacker ( userId, userName, userEmail ) VALUES ( 0, 'null', 'no email' );
-
-INSERT INTO TicketStatus ( ticketStatusId, ticketStatusName ) VALUES ( 0, 'no ticket' );
 
 INSERT INTO TicketStatus ( ticketStatusName ) VALUES ( 'sent' );
 INSERT INTO TicketStatus ( ticketStatusName ) VALUES ( 'pending' );
 INSERT INTO TicketStatus ( ticketStatusName ) VALUES ( 'confirmed' );
 INSERT INTO TicketStatus ( ticketStatusName ) VALUES ( 'closed' );
-
-INSERT INTO Ticket
-    ( ticketId, userId, ticketTableNumber, ticketContents, ticketStatusId )
-    VALUES ( 0, 0, 0, 'empty ticket', 0 );
 
 COMMIT;
