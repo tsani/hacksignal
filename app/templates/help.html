@@ -10,21 +10,49 @@
     <label>
         Name:
         {{ form.user_name() }}
+        {% if form.user_name.errors %}
+        <ul class="errors-area">
+        {% for error in form.user_name.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
     </label>
     <br>
     <label>
         Email:
         {{ form.user_email() }}
+        {% if form.user_email.errors %}
+        <ul class="errors-area">
+        {% for error in form.user_email.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
     </label>
     <br>
     <label>
         I need help with...(please give keywords like "iOS" or "Ruby")
         {{ form.ticket_contents() }}
+        {% if form.ticket_contents.errors %}
+        <ul class="errors-area">
+        {% for error in form.ticket_contents.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
     </label>
     <br>
     <label>
         Table number:
         {{ form.ticket_table_number() }}
+        {% if form.ticket_table_number.errors %}
+        <ul class="errors-area">
+        {% for error in form.ticket_table_number.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
     </label>
     <br>
     <input type='submit'>
