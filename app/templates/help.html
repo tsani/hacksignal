@@ -1,10 +1,14 @@
 {% extends "layout.html" %}
 
+<h1>McMentor Me!</h1>
+
+<h3>Fill out the mentorship form and a dedicated McMentor will meet you at your table. For bugs and emergencies: <a href="mailto:ari@mchacks.io">ari@mchacks.io</a></h3>
+
 {% block contents %}
 <form action='{{ url_for("mentor_request") }}' method='POST'>
     {{ form.hidden_tag() }}
     <label>
-        Username:
+        Name:
         {{ form.user_name() }}
     </label>
     <br>
@@ -14,7 +18,7 @@
     </label>
     <br>
     <label>
-        Ticket contents:
+        I need help with...(please give keywords like "iOS" or "Ruby")
         {{ form.ticket_contents() }}
     </label>
     <br>
