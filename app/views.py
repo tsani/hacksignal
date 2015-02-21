@@ -6,11 +6,7 @@ from app.auth import requires_auth
 
 from flask import render_template
 
-@app.route('/')
-def index():
-    return "hello world"
-
-@app.route('/help', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def mentor_request():
     form = MentorRequestForm()
     if form.validate_on_submit():
