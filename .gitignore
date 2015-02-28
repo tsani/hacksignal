@@ -2,3 +2,4 @@ venv/
 secret_config.py
 jquery*.js
 *.pyc
+/dumps
