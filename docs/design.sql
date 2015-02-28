@@ -26,19 +26,19 @@ CREATE TABLE TicketStatus (
 CREATE TABLE Ticket (
     ticketId
         SERIAL PRIMARY KEY,
-    userId
-        int REFERENCES Hacker,
     ticketTableNumber
         int NOT NULL,
     ticketContents
         varchar(150) NOT NULL,
-    ticketStatusId
-        int REFERENCES ticketStatus NOT NULL,
     ticketCreationTime
         timestamp without time zone NOT NULL
         default (now() at time zone 'utc'),
     ticketMentorData
-        varchar(500)
+        varchar(500),
+    ticketStatusId
+        int REFERENCES ticketStatus NOT NULL,
+    userId
+        int REFERENCES Hacker
 );
 
 INSERT INTO TicketStatus ( ticketStatusName ) VALUES ( 'pending' );
