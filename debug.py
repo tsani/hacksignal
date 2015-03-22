@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 
-from app import app
-
-from flask.ext.socketio import SocketIO
-
-socketio = SocketIO(app)
+from app import app, socketio
 
 if __name__ == "__main__":
     app.debug = True
