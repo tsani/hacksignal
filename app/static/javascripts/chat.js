@@ -3,7 +3,7 @@ $(document).ready(function(){
     socket.on('my response', function(msg) {
         $('#chatlog').append('<p>Received: ' + msg.data + '</p>');
     });
-    $('form#chatinput').submit(function(event) {
+    $('#submit-button').click(function(event) {
         socket.emit('my event', {data: $('#msg-content').val()});
         return false;
     });
