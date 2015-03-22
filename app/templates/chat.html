@@ -2,7 +2,13 @@
 
 {% block contents %}
 <script type="text/javascript">var token = {{token}};</script>
-<p>Yo I like hedgehogs</p>
+<div id="chatlog">
+	<p class="message">Hedgehogs r cool</p>
+</div>
+<form id="chatinput" action="{{ url_for('chat') }}" method="POST">
+	<input type="text"></input>
+	<input type="submit"></input>
+</form>
 <p>{{token}}</p>
 <script type="text/javascript" src="/static/javascripts/chat.js"></script>
 {% endblock %}

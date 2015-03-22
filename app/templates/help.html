@@ -6,7 +6,7 @@
 
 <p>Fill out the mentorship form and a dedicated McMentor will meet you at your table. For bugs and emergencies: <a href="mailto:ari@mchacks.io">ari@mchacks.io</a></p>
 
-<form action='{{ url_for("mentor_request") }}' method='POST'>
+<form action="{{ url_for('mentor_request') }}" method='POST'>
     {{ form.hidden_tag() }}
     <label>
         Name:
@@ -67,7 +67,7 @@
         </ul>
         {% endif %}
     </label>
-    <input id='submit-plz' type='submit' value='Mentor me!'>
+    <input id="submit-plz" type="submit" value="Mentor me!">
 </form>
 
 <p class="bragging">McHacks Mentorship Platform built by <a href='http://github.com/djeik'>Jacob Thomas Errington</a></p>
