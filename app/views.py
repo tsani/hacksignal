@@ -26,7 +26,7 @@ def mentor_request():
         except ValueError as e:
             return "database is totally borked"
 
-        return render_template('success.html')
+        return render_template('chat.html', token="sample-token")
 
     return render_template('help.html',
             title='Mentor me!',
