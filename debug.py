@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-from app import app
+from app import app, socketio
 
-from flask.ext.socketio import SocketIO
+from gevent import monkey
 
-socketio = SocketIO(app)
+monkey.patch_all()
 
 if __name__ == "__main__":
     app.debug = True
