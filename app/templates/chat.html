@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
 
 {% block contents %}
+<script type="text/javascript">var token = {{token}};</script>
 <p>Yo I like hedgehogs</p>
+<p>{{token}}</p>
+<script type="text/javascript" src="/static/javascripts/chat.js"></script>
 {% endblock %}
