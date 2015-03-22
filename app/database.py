@@ -2,7 +2,7 @@ from app import app
 
 import psycopg2
 
-class Database:
+class RealDatabase:
     ticket_data_columns = ['ticketId', 'ticketContents', 'ticketTableNumber',
                 'ticketStatusName', 'ticketMentorData', 'userId', 'userName',
                 'userEmail']
@@ -186,3 +186,77 @@ class Database:
             cur = conn.cursor()
             cur.execute("SELECT ticketStatusName FROM TicketStatus;")
             return [r[0] for r in cur.fetchall()]
+
+class FakeDatabase:
+    @staticmethod
+    def list_tickets(selector):
+        return [ {
+            'ticketId': 1,
+            'ticketContents': 'fake ticket',
+            'ticketTableNumber': 1337,
+            'ticketStatusName': 'pending',
+            'ticketMentorData': 'awesome mentorship dude',
+            'userId': 1,
+            'userName': 'SuperCool McBro',
+            'userEmail': 'supercool.mcbro@webscale.website'
+        } ]
+
+    @staticmethod
+    def get_ticket(ticket_id):
+        if ticket_id == 1:
+            return {
+                'ticketId': 1,
+                'ticketContents': 'fake ticket',
+                'ticketTableNumber': 1337,
+                'ticketStatusName': 'pending',
+                'ticketMentorData': 'awesome mentorship dude',
+                'userId': 1,
+                'userName': 'SuperCool McBro',
+                'userEmail': 'supercool.mcbro@webscale.website'
+            }
+        else:
+            return None
+
+    @staticmethod
+    def create_user_if_not_exists(name, email):
+        return 1
+
+    @staticmethod
+    def create_ticket(user_id, ticket_table_number, ticket_contents,
+            ticket_status_name):
+        return {
+            'ticketId': 1,
+            'ticketContents': ticket_contents,
+            'ticketTableNumber': ticket_table_number,
+            'ticketStatusName': ticket_status_name,
+            'ticketMentorData': 'awesome mentorship dude',
+            'userId': user_id,
+            'userName': 'SuperCool McBro',
+            'userEmail': 'supercool.mcbro@webscale.website'
+        }
+
+    @staticmethod
+    def update_ticket_status(ticket_id, ticket_status_name=None,
+            ticket_status_id=None):
+        return None
+
+    @staticmethod
+    def update_ticket_data(ticket_id, ticket_data):
+        return None
+
+    @staticmethod
+    def delete_ticket(ticket_id):
+        return None
+
+    @staticmethod
+    def delete_user(user_email=None, user_id=None):
+        return None
+
+    @staticmethod
+    def get_ticket_status_names():
+        return ['pending', 'confirmed', 'sent', 'closed']
+
+if app.config['DATABASE']['active']:
+    Database = RealDatabase
+else:
+    Database = FakeDatabase
