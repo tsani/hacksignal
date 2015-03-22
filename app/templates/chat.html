@@ -6,7 +6,7 @@
 	<p class="message">Hedgehogs r cool</p>
 </div>
 <form id="chatinput" action="{{ url_for('chat') }}" method="POST">
-	<input type="text"></input>
+	<input id="msg-content" type="text"></input>
 	<input type="submit"></input>
 </form>
 <p>{{token}}</p>
