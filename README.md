@@ -42,7 +42,7 @@ To set up the package, you'll need a recent version of PostgreSQL, and python 3.
                 "user": "mchacks",
                 "password": "seeeeekret",
                 "name": "mchacks",
-                "host": "localhost"
+                "host": "localhost",
                 "active": True
         }
 
