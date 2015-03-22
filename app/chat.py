@@ -1,15 +1,15 @@
-from app import app
+from app import app, socketio
 
 from flask.ext.socketio import emit
 
-@app.socketio.on('my event', namespace='/test')
+@socketio.on('my event', namespace='/chat')
 def test_message(message):
     emit('my response', {'data': message['data']})
 
-@app.socketio.on('connect', namespace='/test')
+@socketio.on('connect', namespace='/chat')
 def test_connect():
     emit('my response', {'data': 'Connected'})
 
-@app.socketio.on('disconnect', namespace='/test')
+@socketio.on('disconnect', namespace='/chat')
 def test_disconnect():
     print('Client disconnected')
