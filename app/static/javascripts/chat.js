@@ -3,7 +3,7 @@ $(document).ready(function(){
 
     console.log('connected');
     socket.on('my response', function(msg) {
-        $('#chatlog').append('<p>Received: ' + msg.data + '</p>');
+        $('#chatlog').append('<p class="message"><span class="author">Author name here: </span>' + msg.data + '</p>');
     });
 
     console.log('registered socket event handler');
