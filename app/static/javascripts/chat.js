@@ -23,7 +23,7 @@ $(document).ready(function(){
 
     console.log('registered socket event handler');
 
-    $('#submit-button').click(function(event) {
+    $('#chatinput').submit(function(event) {
         socket.emit('chat message', {
             sender: token,
             data: $('#msg-content').val()
