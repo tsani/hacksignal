@@ -93,8 +93,8 @@ label {
 }
 
 #chatlog p {
-    padding: 1ex;
-    margin: 0.5ex 0;
+    padding: 1em;
+    margin: 0.5em 0;
 }
 
 .message {
