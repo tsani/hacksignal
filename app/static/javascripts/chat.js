@@ -19,6 +19,7 @@ $(document).ready(function(){
             msg.data +
             '</p>'
         );
+        scrollToBottom();
     });
 
     console.log('registered socket event handler');
@@ -34,3 +35,9 @@ $(document).ready(function(){
 
     console.log('registered click event handler');
 });
+
+function scrollToBottom() {
+    var box    = $('#chatlog');
+    var height = box[0].scrollHeight;
+    box.scrollTop(height);
+}
