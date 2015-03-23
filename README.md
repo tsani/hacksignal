@@ -42,7 +42,8 @@ To set up the package, you'll need a recent version of PostgreSQL, and python 3.
                 "user": "mchacks",
                 "password": "seeeeekret",
                 "name": "mchacks",
-                "host": "localhost"
+                "host": "localhost",
+                "active": True
         }
 
         AUTHENTICATION = {
@@ -54,6 +55,10 @@ To set up the package, you'll need a recent version of PostgreSQL, and python 3.
 
     The `AUTHENTICATION` dictionary is used for the HTTP basic auth implemented
     for the administration panel.
+
+    The `active` key in the `DATABASE` dictionary is used to determine whether
+    a real database connection should be used (as specified in the `DATABASE`
+    dictionary), or whether a dummy database should be used.
 
 3. Running the server.
 
