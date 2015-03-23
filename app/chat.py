@@ -4,9 +4,15 @@ from flask import session
 
 from flask.ext.socketio import emit, join_room
 
-@socketio.on('my event', namespace='/chat')
+@socketio.on('chat message', namespace='/chat')
 def test_message(message):
     emit('chat message', {
+        'sender': message['sender'],
+        'data': message['data']
+    }, room='__admin__')
+
+    emit('chat message', {
+        'sender': message['sender'],
         'data': message['data']
     })
 
@@ -14,7 +20,8 @@ def test_message(message):
 def socket_auth(req):
     join_room(req['username'])
     emit('server message', {
-        'data': 'Logged in as: ' + session['username']
+        'sender': 'Server',
+        'data': 'Logged in as: ' + req['username']
     })
 
 @socketio.on('admin message', namespace='/chat')
@@ -54,7 +61,10 @@ def admin_message(req):
 
 @socketio.on('connect', namespace='/chat')
 def test_connect():
-    emit('chat message', {'data': 'Connected'})
+    emit('server message', {
+        'sender': 'Server',
+        'data': 'Connected'
+    })
 
 @socketio.on('disconnect', namespace='/chat')
 def test_disconnect():
