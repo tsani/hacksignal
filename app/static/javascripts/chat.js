@@ -1,9 +1,18 @@
 $(document).ready(function(){
-    var socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
+    var socket = io.connect(
+        'http://' + document.domain + ':' + location.port + '/chat');
 
-    console.log('connected');
-    socket.on('my response', function(msg) {
-        $('#chatlog').append('<p class="message"><span class="author">Author name here: </span>' + msg.data + '</p>');
+    socket.emit('auth', {
+        'username': token // a global variable provided by chat.html
+    });
+
+    socket.on('server message', function(msg) {
+        $('#chatlog').append(
+            '<p class="server-message">' + msg.data + '</p>');
+
+    socket.on('chat message', function(msg) {
+        $('#chatlog').append(
+            '<p class="message"><span class="author">' + msg.sender + '</span>: ' + msg.data + '</p>');
     });
 
     console.log('registered socket event handler');
