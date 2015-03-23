@@ -3,10 +3,11 @@ var socket = io.connect(
 
 console.log('connected');
 
-function sendAdminMessage(user, message) {
+function sendAdminMessage(user) {
     user = 'sample-token';
+    msgContent = $("#responseOptions").val();
     socket.emit('admin message', {
-        data: message,
+        data: msgContent,
         password: password, //ayyyy lmao
         destination: user
     });
@@ -17,4 +18,9 @@ $(document).ready(function(){
     socket.on('error message', function(msg) {
         console.log(msg);
     });
+});
+
+$("#responseOptions").change(function() {
+    var msgContent = "";
+    msgContent = $("select option:selected").val();
 });
