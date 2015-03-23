@@ -107,6 +107,12 @@ label {
 	padding: 5px;
 }
 
+.admin-message {
+	background-color: #CC543D;
+	margin: 0;
+	padding: 5px;
+}
+
 .author {
 	font-weight: bold;
 }

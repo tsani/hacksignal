@@ -5,11 +5,22 @@ console.log('connected');
 
 function alertDispatched(email) {
     //var user = email;
-    console.log('got into alertDispatched');
     var user = 'sample-token';
 
     socket.emit('admin message', {
         data: 'Your mentor has been dispatched.',
+        password: password, //ayyyy lmao
+        destination: user
+    });
+    return false;
+}
+
+function alertNP(email) {
+    //var user = email;
+    var user = 'sample-token';
+
+    socket.emit('admin message', {
+        data: 'No problem, fake user!',
         password: password, //ayyyy lmao
         destination: user
     });

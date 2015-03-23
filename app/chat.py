@@ -45,7 +45,7 @@ def admin_message(req):
         return None
 
     try:
-        emit('chat message', {
+        emit('admin message', {
             'sender': 'Operator', # TODO operator name
             'data': req['data'],
         }, room=req['destination'])
@@ -54,7 +54,7 @@ def admin_message(req):
             'data': str(e)
         })
     else:
-        emit('chat message', {
+        emit('admin message', {
             'sender': 'Operator', # TODO operator name
             'data': req['data'],
         })
