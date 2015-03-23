@@ -35,7 +35,7 @@ To set up the package, you'll need a recent version of PostgreSQL, and python 3.
 
 3. Tell us your secrets.
 
-    You need to write a small configuration module called `secret_configs.py`
+    You need to write a small configuration module called `secret_config.py`
     in the project root. Its contents should look something like the following.
 
         DATABASE = {
