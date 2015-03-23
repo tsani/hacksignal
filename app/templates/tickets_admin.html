@@ -38,8 +38,8 @@
                 Nuke it
             </button>
 
-            <button onclick="alertDispatched('{{ ticket.userEmail }}');">dispatched</button>
-            <button onclick="alertNP('{{ ticket.userEmail }}');">no problemo!</button>
+            <button onclick="sendAdminMessage('{{ ticket.userEmail }}', 'sent mentor');">dispatched</button>
+            <button onclick="sendAdminMessage('{{ ticket.userEmail }}', 'no problemo!');">no problemo!</button>
 
             <select class='tl-status' autocomplete='off'>
                 {% for ticket_status in ticket_statuses %}

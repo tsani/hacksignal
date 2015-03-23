@@ -3,24 +3,10 @@ var socket = io.connect(
 
 console.log('connected');
 
-function alertDispatched(email) {
-    //var user = email;
-    var user = 'sample-token';
-
+function sendAdminMessage(user, message) {
+    user = 'sample-token';
     socket.emit('admin message', {
-        data: 'Your mentor has been dispatched.',
-        password: password, //ayyyy lmao
-        destination: user
-    });
-    return false;
-}
-
-function alertNP(email) {
-    //var user = email;
-    var user = 'sample-token';
-
-    socket.emit('admin message', {
-        data: 'No problem, fake user!',
+        data: message,
         password: password, //ayyyy lmao
         destination: user
     });
