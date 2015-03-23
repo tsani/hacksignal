@@ -61,3 +61,42 @@ label {
 .bragging {
     text-align: center;
 }
+
+/* chat */
+
+#chatlog {
+	background-color: white;
+	height: 60vh;
+	border: 1px solid #ccc;
+	padding: 25px;
+	overflow-y: auto; 
+}
+
+#chatinput input {
+	width: 80%;
+	height: 40px;
+	font-size: 14px;
+	font-family: Lato;
+	padding: 0 20px;
+}
+
+#chatinput button {
+	height: 40px;
+	cursor: pointer;
+	font-size: 14px;
+	font-family: Lato;
+	padding: 0 15px;
+	background-color: #38FF6D;
+	box-shadow: none;
+	border: 1px solid #ccc;
+}
+
+.message {
+	background-color: #FFFC54;
+	margin: 0;
+	padding: 5px;
+}
+
+.server-message {
+	background-color: #437FB2;
+}
