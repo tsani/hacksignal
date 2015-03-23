@@ -38,8 +38,13 @@
                 Nuke it
             </button>
 
-            <button onclick="sendAdminMessage('{{ ticket.userEmail }}', 'sent mentor');">dispatched</button>
-            <button onclick="sendAdminMessage('{{ ticket.userEmail }}', 'no problemo!');">no problemo!</button>
+            <select id="responseOptions">
+                <option value="Your mentor is on their way!">Dispatched</option>
+                <option value="There are no mentors available right now. We will let you know when one is free.">No mentor available</option>
+                <option value="We can't seem to find you. Where are you located?">Can't find</option>
+                <option value="No problem! Happy hacking :)">You're welcome</option>
+            </select>
+            <button id="send-message" onclick="sendAdminMessage('{{ ticket.userEmail }}')" type="button">Send message</button>
 
             <select class='tl-status' autocomplete='off'>
                 {% for ticket_status in ticket_statuses %}
