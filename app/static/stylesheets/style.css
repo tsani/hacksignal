@@ -69,7 +69,7 @@ label {
 	height: 60vh;
 	border: 1px solid #ccc;
 	padding: 25px;
-	overflow-y: auto; 
+	overflow-y: auto;
 }
 
 #chatinput input {
@@ -78,6 +78,7 @@ label {
 	font-size: 14px;
 	font-family: Lato;
 	padding: 0 20px;
+    border: none;
 }
 
 #chatinput button {
@@ -91,12 +92,17 @@ label {
 	border: 1px solid #ccc;
 }
 
+#chatlog p {
+    padding: 1ex;
+    margin: 0.5ex 0;
+}
+
 .message {
 	background-color: #FFFC54;
-	margin: 0;
-	padding: 5px;
 }
 
 .server-message {
 	background-color: #437FB2;
+	margin: 0;
+	padding: 5px;
 }
