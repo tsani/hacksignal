@@ -18,6 +18,7 @@ $(document).ready(function(){
     console.log('registered socket event handler');
     $('#submit-button').click(function(event) {
         socket.emit('my event', {data: $('#msg-content').val()});
+        $("#msg-content").val("");
         return false;
     });
 
