@@ -39,6 +39,7 @@
             </button>
 
             <button onclick="alertDispatched('{{ ticket.userEmail }}');">dispatched</button>
+            <button onclick="alertNP('{{ ticket.userEmail }}');">no problemo!</button>
 
             <select class='tl-status' autocomplete='off'>
                 {% for ticket_status in ticket_statuses %}

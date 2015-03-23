@@ -22,6 +22,17 @@ $(document).ready(function(){
         scrollToBottom();
     });
 
+    socket.on('admin message', function(msg) {
+        $('#chatlog').append(
+            '<p class="admin-message"><span class="author">' +
+            msg.sender +
+            ':</span> ' +
+            msg.data +
+            '</p>'
+        );
+        scrollToBottom();
+    });
+
     console.log('registered socket event handler');
 
     $('#chatinput').submit(function(event) {
