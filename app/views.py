@@ -6,6 +6,10 @@ from app.auth import requires_auth
 
 from flask import render_template, request
 
+@app.route('/favicon.ico')
+def favicon():
+    return app.send_static_file('img/favicon.ico')
+
 @app.route('/', methods=['GET', 'POST'])
 def mentor_request():
     form = MentorRequestForm()
