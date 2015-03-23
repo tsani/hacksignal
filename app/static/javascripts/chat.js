@@ -8,14 +8,14 @@ $(document).ready(function(){
 
     socket.on('server message', function(msg) {
         $('#chatlog').append(
-            '<p class="server-message">' + msg.data + '</p>');
+            '<p class="server-message"><span class="author">Mr. Web Server: </span>' + msg.data + '</p>');
     });
 
     socket.on('chat message', function(msg) {
         $('#chatlog').append(
             '<p class="message"><span class="author">' +
             msg.sender +
-            '</span>: ' +
+            ':</span> ' +
             msg.data +
             '</p>'
         );

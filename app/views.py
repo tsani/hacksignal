@@ -4,7 +4,7 @@ from app.forms import MentorRequestForm
 from app.database import Database
 from app.auth import requires_auth
 
-from flask import render_template
+from flask import render_template, request
 
 @app.route('/', methods=['GET', 'POST'])
 def mentor_request():
@@ -44,4 +44,5 @@ def admin_panel(ticket_status):
     ticket_statuses = Database.get_ticket_status_names()
     return render_template('tickets_admin.html',
             tickets=tickets,
-            ticket_statuses=ticket_statuses)
+            ticket_statuses=ticket_statuses,
+            password=request.authorization.password)

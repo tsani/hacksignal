@@ -21,7 +21,7 @@ def socket_auth(req):
     join_room(req['username'])
     emit('server message', {
         'sender': 'Server',
-        'data': 'Logged in as: ' + req['username']
+        'data': 'You&apos;re logged in as ' + req['username']
     })
 
 @socketio.on('admin message', namespace='/chat')
