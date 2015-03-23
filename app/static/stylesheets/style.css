@@ -99,4 +99,6 @@ label {
 
 .server-message {
 	background-color: #437FB2;
+	margin: 0;
+	padding: 5px;
 }
