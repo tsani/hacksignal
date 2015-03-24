@@ -1,5 +1,9 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900);
 
+* {
+	box-sizing: border-box;
+}
+
 body {
     margin: 5%;
     padding: 0;
@@ -78,23 +82,27 @@ label {
 	font-size: 14px;
 	font-family: Lato;
 	padding: 0 20px;
-    border: none;
+    border: 1px solid #ccc;
 }
 
 #chatinput button {
-	height: 40px;
+	height: 39px;
 	cursor: pointer;
 	font-size: 14px;
 	font-family: Lato;
-	padding: 0 15px;
-	background-color: #38FF6D;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 0 40px;
+	background-color: #222;
+	/*background-color: white;*/
 	box-shadow: none;
-	border: 1px solid #ccc;
+	border: none;
+	color: white;
 }
 
 #chatlog p {
     padding: 1em;
-    margin: 0.5em 0;
+    /*margin: 0.5em 0;*/
 }
 
 #chathead {
@@ -116,19 +124,21 @@ label {
 }
 
 .message {
-	background-color: #FFFC54;
+	/*background-color: #FFFC54;*/
+	border-top: 3px solid #FFFC54;
+	margin: 0;
 }
 
 .server-message {
-	background-color: #437FB2;
+	/*background-color: #437FB2;*/
+	border-top: 3px solid #437FB2;
 	margin: 0;
-	padding: 5px;
 }
 
 .admin-message {
-	background-color: #CC543D;
+	/*background-color: #CC543D;*/
+	border-top: 3px solid #CC543D;
 	margin: 0;
-	padding: 5px;
 }
 
 .label-bold {
