@@ -5,12 +5,16 @@
 }
 
 body {
-    margin: 5%;
+    margin: 0 0 20px 0;
     padding: 0;
     background-color: #eee;
-    font-family: Roboto, sans-serif;
+    font-family: Lato, sans-serif;
     color: #222;
     overflow-x: hidden;
+}
+
+a {
+	color: #CC543D;
 }
 
 label {
@@ -18,9 +22,53 @@ label {
     margin: 5px;
 }
 
+label input {
+	max-width: 300px;
+	min-width: 150px;
+	width: 50%;
+	margin: 10px;
+}
+
+.header {
+	background-color: #222;
+	color: white;
+	padding: 10px 25px 25px 25px;
+}
+
+#main-form {
+	background-color: white;
+	border: 1px solid #ccc;
+	padding: 25px;
+	margin-bottom: 30px;
+}
+
+.big-text-input {
+	margin-top: 10px;
+}
+
+.big-text-input textarea {
+	width: 100%;
+	height: 70px;
+}
+
+.wrapper {
+	width: 100%;
+	text-align: center;
+}
+
 #submit-plz {
-	width: 100px;
-	padding: 20px;
+	height: 39px;
+	cursor: pointer;
+	font-size: 14px;
+	font-family: Lato;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 0 40px;
+	background-color: #222;
+	/*background-color: white;*/
+	box-shadow: none;
+	border: none;
+	color: white;
 }
 
 .errors-area li {
@@ -64,6 +112,9 @@ label {
 
 .bragging {
     text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin: 10px;
 }
 
 /* chat */
@@ -74,6 +125,10 @@ label {
 	border: 1px solid #ccc;
 	padding: 25px;
 	overflow-y: auto;
+}
+
+#chatinput {
+	margin-bottom: 40px;
 }
 
 #chatinput input {
@@ -100,6 +155,18 @@ label {
 	color: white;
 }
 
+@media screen and (max-width: 610px) {
+	#chatinput input {
+		width: 100%;
+	}
+	#chatinput {
+		text-align: center;
+	}
+	#chatinput button {
+		width: 80%;
+		margin: 20px 0 0 0;
+	}
+
 #chatlog p {
     padding: 1em;
     /*margin: 0.5em 0;*/
@@ -120,7 +187,7 @@ label {
 #chatdata li {
 	display: inline-block;
 	margin: 0;
-	padding: 10px 15px;
+	padding: 10px 10px;
 }
 
 .message {
@@ -142,5 +209,5 @@ label {
 }
 
 .label-bold {
-	font-weight: bold;
+	font-weight: 800;
 }

@@ -2,10 +2,13 @@
 
 {% block contents %}
 
-<h1>McMentor Me!</h1>
+<div class="header">
+<h1>HackSignal</h1>
 
-<p>Fill out the mentorship form and a dedicated McMentor will meet you at your table. For bugs and emergencies: <a href="mailto:ari@mchacks.io">ari@mchacks.io</a></p>
+<p>Send out hack signal and our operator will connect you with a dedicated mentor! For bugs and emergencies: <a href="mailto:ari@mchacks.io">ari@mchacks.io</a></p>
+</div>
 
+<div id="main-form">
 <form action="{{ url_for('mentor_request') }}" method='POST'>
     {{ form.hidden_tag() }}
     <label>
@@ -34,7 +37,7 @@
     <br>
     <label>
         I need help with...(please give keywords like "iOS" or "Ruby")
-        <div style="display:block; margin: 10px;">{{ form.ticket_contents() }}</div>
+        <div class="big-text-input">{{ form.ticket_contents() }}</div>
         {% if form.ticket_contents.errors %}
         <ul class="errors-area">
         {% for error in form.ticket_contents.errors %}
@@ -45,7 +48,7 @@
     </label>
     <br>
     <label>
-        Table number:
+        Table #:
         {{ form.ticket_table_number() }}
         {% if form.ticket_table_number.errors %}
         <ul class="errors-area">
@@ -69,8 +72,10 @@
         {% endif %}
     </label>
     #}
-    <input id="submit-plz" type="submit" value="Mentor me!">
+    <div class="wrapper"><input id="submit-plz" type="submit" value="SEND SIGNAL"></div>
 </form>
+</div>
 
-<p class="bragging">McHacks Mentorship Platform built by <a href='http://github.com/djeik'>Jacob Thomas Errington</a></p>
+<p class="bragging">HackSignal is built and maintained by <a href='http://github.com/djeik'>Jacob Thomas Errington</a> and <a href='http://github.com/arirawr'>Ari VanIderstine</a></p>
+<p class="bragging">This project is on <a href="http://github.com/djeik/mchacks-mentorship">Github</a></p>
 {% endblock %}

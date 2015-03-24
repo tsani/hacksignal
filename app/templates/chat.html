@@ -2,20 +2,24 @@
 
 {% block contents %}
 <script type="text/javascript">var token = "{{token}}";</script>
-<div id="chathead">
+<div class="header">
+	<h1>HackSignal</h1>
 	<ul id="chatdata">
 		<li><span class="label-bold">Signal ID: </span>762</li>
-		<li><span class="label-bold">User ID: </span>ayylmao@dankme.me</li>
-		<li><span class="label-bold">Signal content: </span>Need help setting up GPS data with Android Studio.</li>
+		<li><span class="label-bold">Hacker ID: </span>ariari</li>
+		<li><span class="label-bold">Signal content: </span>Need help setting up GPS data with Android Studio. Need help setting up GPS data with Android Studio.</li>
+		<li><span class="label-bold">Signal status: </span>PENDING</li>
 	</ul>
 </div>
 <div id="chatlog">
 	<h3>You are chatting with the mentorship operator. DO NOT REFRESH THIS PAGE.</h3>
 </div>
 <form id="chatinput">
-	<input id="msg-content" type="text"></input>
+	<input id="msg-content" value="type here" type="text"></input>
 	<button id="submit-button">Send</button>
 </form>
+<p class="bragging">HackSignal is built and maintained by <a href='http://github.com/djeik'>Jacob Thomas Errington</a> and <a href='http://github.com/arirawr'>Ari VanIderstine</a></p>
+<p class="bragging">This project is on <a href="http://github.com/djeik/mchacks-mentorship">Github</a></p>
 <!--<p>{{token}}</p>-->
 <script type="text/javascript" src="/static/javascripts/chat.js"></script>
 {% endblock %}
