@@ -97,6 +97,24 @@ label {
     margin: 0.5em 0;
 }
 
+#chathead {
+	background-color: #222;
+	color: white;
+	padding: 10px;
+	list-style: none;
+}
+
+#chatdata {
+	margin: 0;
+	padding: 0;
+}
+
+#chatdata li {
+	display: inline-block;
+	margin: 0;
+	padding: 10px 15px;
+}
+
 .message {
 	background-color: #FFFC54;
 }
@@ -113,6 +131,6 @@ label {
 	padding: 5px;
 }
 
-.author {
+.label-bold {
 	font-weight: bold;
 }

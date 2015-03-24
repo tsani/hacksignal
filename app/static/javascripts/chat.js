@@ -8,12 +8,12 @@ $(document).ready(function(){
 
     socket.on('server message', function(msg) {
         $('#chatlog').append(
-            '<p class="server-message"><span class="author">Mr. Web Server: </span>' + msg.data + '</p>');
+            '<p class="server-message"><span class="label-bold">Mr. Web Server: </span>' + msg.data + '</p>');
     });
 
     socket.on('chat message', function(msg) {
         $('#chatlog').append(
-            '<p class="message"><span class="author">' +
+            '<p class="message"><span class="label-bold">' +
             msg.sender +
             ':</span> ' +
             msg.data +
@@ -24,7 +24,7 @@ $(document).ready(function(){
 
     socket.on('admin message', function(msg) {
         $('#chatlog').append(
-            '<p class="admin-message"><span class="author">' +
+            '<p class="admin-message"><span class="label-bold">' +
             msg.sender +
             ':</span> ' +
             msg.data +
