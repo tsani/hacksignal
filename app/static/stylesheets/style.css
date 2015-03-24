@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900);
+@import url(http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700);
 
 * {
 	box-sizing: border-box;
@@ -8,7 +8,7 @@ body {
     margin: 0 0 20px 0;
     padding: 0;
     background-color: #eee;
-    font-family: Lato, sans-serif;
+    font-family: PT Sans Narrow, sans-serif;
     color: #222;
     overflow-x: hidden;
 }
@@ -60,7 +60,7 @@ label input {
 	height: 39px;
 	cursor: pointer;
 	font-size: 14px;
-	font-family: Lato;
+	font-family: PT Sans Narrow;
 	font-weight: bold;
 	text-transform: uppercase;
 	padding: 0 40px;
@@ -114,7 +114,7 @@ label input {
     text-align: center;
     font-size: 14px;
     color: #666;
-    margin: 10px;
+    margin: 10px 15px;
 }
 
 /* chat */
@@ -135,7 +135,7 @@ label input {
 	width: 80%;
 	height: 40px;
 	font-size: 14px;
-	font-family: Lato;
+	font-family: PT Sans Narrow;
 	padding: 0 20px;
     border: 1px solid #ccc;
 }
@@ -144,7 +144,7 @@ label input {
 	height: 39px;
 	cursor: pointer;
 	font-size: 14px;
-	font-family: Lato;
+	font-family: PT Sans Narrow;
 	font-weight: bold;
 	text-transform: uppercase;
 	padding: 0 40px;
