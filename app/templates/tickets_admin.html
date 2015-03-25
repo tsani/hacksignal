@@ -8,7 +8,7 @@
 
 <h3>Over {{ tickets|length }} hackers helped since 2015!</h3>
 
-    <ul id='tickets-list'>
+    <ul id='tickets-list' ng-controller='TicketListController'>
     {% for ticket in tickets %}
         {# The id for the li is very important, see environment.js,
         and adminchat.js #}
@@ -79,5 +79,6 @@
     </ul>
 
 <script type="text/javascript" src="/static/javascripts/adminchat.js"></script>
+<script type="text/javascript" src="/static/javascripts/services.js"></script>
 
 {% endblock %}

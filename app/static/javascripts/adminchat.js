@@ -20,8 +20,15 @@ socket.on('server message', function(msg) {
     console.log(JSON.stringify(msg));
 });
 
-$(document).ready(function(){
+$(document).ready(function() {
     socket.on('error message', function(msg) {
         console.log(msg);
     });
+});
+
+var app = angular.module('ticketApp', []);
+
+app.controller('TicketListController', function($scope) {
+    console.log('the controller says "hi".');
+    // todo
 });
