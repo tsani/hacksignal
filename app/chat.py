@@ -5,18 +5,27 @@ from flask import session
 from flask.ext.socketio import emit, join_room
 
 def admin_authenticate(inner):
+    """ Wrap a SocketIO endpoint requiring the socket to have administrative
+        primileges.
+    """
     def authenticate_and_call(req):
-        if 'password' not in req:
+        """ Two checks are performed on the socket: either it provides a
+            password in the request or its session has administrative
+            privileges.
+        """
+        password = 'password' in req and \
+                req['password'] == app.config['ADMIN_MESSAGE_PASSWORD']
+        is_admin = 'password' in session and \
+                session['password'] == app.config['ADMIN_MESSAGE_PASSWORD']
+
+        if password or is_admin:
+            inner(req)
+        else:
             emit('error message', {
-                'message': 'this endpoint is password protected'
+                'message': 'authentication required'
             })
             return None
-        if req['password'] != app.config['ADMIN_MESSAGE_PASSWORD']:
-            emit('error message', {
-                'message': 'incorrect password'
-            })
-            return None
-        inner(req)
+
     return authenticate_and_call
 
 @socketio.on('chat message', namespace='/chat')
@@ -43,6 +52,7 @@ def socket_auth(req):
 @admin_authenticate
 def admin_auth(req):
     join_room('__admin__')
+    session['admin'] = app.config['MESSAGE_ADMIN_PASSWORD']
     emit('server message', {
         'sender': 'Server',
         'data': 'Authenticated administrator.'
