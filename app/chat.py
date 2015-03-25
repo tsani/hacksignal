@@ -68,4 +68,4 @@ def test_connect():
 
 @socketio.on('disconnect', namespace='/chat')
 def test_disconnect():
-    print('Client disconnected')
+    pass
