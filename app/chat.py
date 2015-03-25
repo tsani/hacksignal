@@ -4,6 +4,21 @@ from flask import session
 
 from flask.ext.socketio import emit, join_room
 
+def admin_authenticate(inner):
+    def authenticate_and_call(req):
+        if 'password' not in req:
+            emit('error message', {
+                'message': 'this endpoint is password protected'
+            })
+            return None
+        if req['password'] != app.config['ADMIN_MESSAGE_PASSWORD']:
+            emit('error message', {
+                'message': 'incorrect password'
+            })
+            return None
+        inner(req)
+    return authenticate_and_call
+
 @socketio.on('chat message', namespace='/chat')
 def test_message(message):
     emit('chat message', {
@@ -21,23 +36,21 @@ def socket_auth(req):
     join_room(req['username'])
     emit('server message', {
         'sender': 'Server',
-        'data': 'You&apos;re logged in as ' + req['username']
+        'data': 'You\'re logged in as ' + req['username']
+    })
+
+@socketio.on('admin auth', namespace='/chat')
+@admin_authenticate
+def admin_auth(req):
+    join_room('__admin__')
+    emit('server message', {
+        'sender': 'Server',
+        'data': 'Authenticated administrator.'
     })
 
 @socketio.on('admin message', namespace='/chat')
+@admin_authenticate
 def admin_message(req):
-    if 'password' not in req:
-        emit('error message', {
-            'message': 'no password given'
-        })
-        return None
-
-    if req['password'] != app.config['ADMIN_MESSAGE_PASSWORD']:
-        emit('error message', {
-            'message': 'invalid password'
-        })
-        return None
-
     if 'destination' not in req:
         emit('error message', {
             'message': 'no destination given'

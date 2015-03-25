@@ -10,11 +10,16 @@
 
     <ul id='tickets-list'>
     {% for ticket in tickets %}
-        {# The id for the li is very important, see environment.js #}
+        {# The id for the li is very important, see environment.js,
+        and adminchat.js #}
         <li id='ticket-list-item-{{ ticket.ticketId }}'
                 class='ticket-list-type-{{ ticket.ticketStatusName }}'>
             <p class='tl-username'>
             {{ ticket.userName }} ( {{ ticket.userEmail }} )
+            </p>
+
+            <p class='tl-email' style='display: none;'>
+                {{ ticket.userEmail }}
             </p>
 
             <p class='tl-ticketstatus'>
@@ -30,7 +35,9 @@
             {% if ticket.ticketMentorData == None %}
             <textarea class='tl-ticketmentordata'></textarea>
             {% else %}
-            <textarea class='tl-ticketmentordata' autocomplete='off'>{{ ticket.ticketMentorData }}</textarea>
+            <textarea class='tl-ticketmentordata' autocomplete='off'>
+                {{ ticket.ticketMentorData }}
+            </textarea>
             {% endif %}
 
             <button
@@ -38,14 +45,18 @@
                 Nuke it
             </button>
 
-            <select id="responseOptions">
+            <select class="response-options">
                 <option value="Your mentor is on their way!">Dispatched</option>
                 <option value="There are no mentors available right now. We will let you know when one is free.">No mentor available</option>
                 <option value="We can't seem to find you. Where are you located?">Can't find</option>
                 <option value="Could you give some more details about your issue?">More details</option>
                 <option value="No problem! Happy hacking :)">You're welcome</option>
             </select>
-            <button id="send-message" onclick="sendAdminMessage('{{ ticket.userEmail }}')" type="button">Send message</button>
+
+            <button class="send-message"
+                onclick="sendAdminMessage({{ ticket.ticketId }});">
+                Send message
+            </button>
 
             <select class='tl-status' autocomplete='off'>
                 {% for ticket_status in ticket_statuses %}

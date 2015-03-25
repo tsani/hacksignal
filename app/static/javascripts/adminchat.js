@@ -3,24 +3,25 @@ var socket = io.connect(
 
 console.log('connected');
 
-function sendAdminMessage(user) {
-    user = 'sample-token';
-    msgContent = $("#responseOptions").val();
+function sendAdminMessage(ticketId) {
+    var ticketLi = document.getElementById('ticket-list-item-' + ticketId);
+    var user = $(ticketLi).find('.tl-email').text().trim();
+    var msgContent = $(ticketLi).find('option:selected').val();
     socket.emit('admin message', {
         data: msgContent,
         password: password, //ayyyy lmao
         destination: user
     });
+
     return false;
 }
+
+socket.on('server message', function(msg) {
+    console.log(JSON.stringify(msg));
+});
 
 $(document).ready(function(){
     socket.on('error message', function(msg) {
         console.log(msg);
     });
-});
-
-$("#responseOptions").change(function() {
-    var msgContent = "";
-    msgContent = $("select option:selected").val();
 });
