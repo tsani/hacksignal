@@ -61,7 +61,19 @@ app.controller('TicketListController',
                 });
 
                 return false;
-            }
+            };
+
+            $scope.deleteTicket = function(ticketId) {
+                $http.post('/api/tickets/delete/' + ticketId, {})
+                    .success(function(data) {
+                        for(var i = 0; i < $scope.tickets.length; i++) {
+                            if($scope.tickets[i].ticketId === ticketId) {
+                                $scope.tickets.splice(i, 1);
+                                return;
+                            }
+                        }
+                    });
+            };
 
             socket.on('server message', function(msg) {
                 console.log(JSON.stringify(msg));
@@ -75,6 +87,14 @@ app.controller('TicketListController',
                 $http.get('/api/tickets/get/' + msg.ticketId, function(data) {
                     $scope.tickets.unshift(data);
                 });
+
+            socket.on('delete ticket', function(msg) {
+                for(var i = 0; i < $scope.tickets.length; i++) {
+                    if($scope.tickets[i].ticketId == msg.ticketId) {
+                        $scope.tickets.splice(i, 1);
+                        return;
+                    }
+                }
             });
 
             socket.emit('admin auth', { password: password });
