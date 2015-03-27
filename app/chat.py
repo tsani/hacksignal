@@ -29,7 +29,7 @@ def admin_authenticate(inner):
     return authenticate_and_call
 
 @socketio.on('chat message', namespace='/chat')
-def test_message(message):
+def chat_message(message):
     emit('chat message', {
         'sender': message['sender'],
         'data': message['data']
@@ -52,7 +52,7 @@ def socket_auth(req):
 @admin_authenticate
 def admin_auth(req):
     join_room('__admin__')
-    session['admin'] = app.config['MESSAGE_ADMIN_PASSWORD']
+    session['password'] = app.config['ADMIN_MESSAGE_PASSWORD']
     emit('server message', {
         'sender': 'Server',
         'data': 'Authenticated administrator.'
