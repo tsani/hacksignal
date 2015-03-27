@@ -1,4 +1,4 @@
-from app import app
+from app import app, socketio
 from app.database import Database
 
 from flask import jsonify, request
@@ -96,6 +96,11 @@ def delete_ticket(ticket_id):
             "message": str(e)
         })
     else:
+        socketio.emit('delete ticket', {
+            'ticketId': ticket_id
+        }, room='__admin__')
+        print 'ticket deleted'
+
         return jsonify( {
             "status": "ok"
         })
