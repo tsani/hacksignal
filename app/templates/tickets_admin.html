@@ -6,9 +6,13 @@
 
 <h1>McMentor Mama</h1>
 
-<h3>Over {{ tickets|length }} hackers helped since 2015!</h3>
+<div ng-controller='TicketListController'>
 
-    <ul id='tickets-list' ng-controller='TicketListController'>
+{% raw %}
+<h3>Over {{ tickets.length }} hackers helped since 2015!</h3>
+{% endraw %}
+
+    <ul id='tickets-list'>
         {# The id for the li is very important, see environment.js,
         and adminchat.js #}
         {% raw %}
@@ -74,6 +78,8 @@
         </li>
         {% endraw %}
     </ul>
+
+</div>
 
 <script type="text/javascript" src="/static/javascripts/adminchat.js"></script>
 
