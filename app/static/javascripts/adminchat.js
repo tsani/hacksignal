@@ -83,9 +83,10 @@ app.controller('TicketListController',
             });
 
             socket.on('new ticket', function(msg) {
-                $http.get('/api/tickets/get/' + msg.ticketId, function(data) {
-                    $scope.tickets.unshift(data);
-                });
+                // the msg is the complete description of the ticket.
+                console.log('new ticket');
+                $scope.tickets.unshift(msg);
+            });
 
             socket.on('delete ticket', function(msg) {
                 for(var i = 0; i < $scope.tickets.length; i++) {

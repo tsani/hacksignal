@@ -1,4 +1,4 @@
-from app import app
+from app import app, socketio
 
 from app.forms import MentorRequestForm
 from app.database import Database
@@ -29,6 +29,9 @@ def mentor_request():
                     'pending')
         except ValueError as e:
             return "database is totally borked"
+        else:
+            socketio.emit('new ticket', ticket,
+                    room='__admin__', namespace='/chat')
 
         return render_template('chat.html', ticket=ticket)
 
