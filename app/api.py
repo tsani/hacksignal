@@ -98,8 +98,7 @@ def delete_ticket(ticket_id):
     else:
         socketio.emit('delete ticket', {
             'ticketId': ticket_id
-        }, room='__admin__')
-        print 'ticket deleted'
+        }, room='__admin__', namespace='/chat')
 
         return jsonify( {
             "status": "ok"
