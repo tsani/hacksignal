@@ -1,4 +1,8 @@
-<html lang='en' ng-app='ticketApp'>
+{% if angular_app %}
+<html lang='en' ng-app='{{ angular_app }}'>
+{% else %}
+<html land='en'>
+{% endif %}
 <head>
 {% block head %}
     <link rel='stylesheet' type='text/css' href='/static/stylesheets/style.css'>

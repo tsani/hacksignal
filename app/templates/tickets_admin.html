@@ -9,10 +9,10 @@
 <h3>Over {{ tickets|length }} hackers helped since 2015!</h3>
 
     <ul id='tickets-list' ng-controller='TicketListController'>
-    {% for ticket in tickets %}
         {# The id for the li is very important, see environment.js,
         and adminchat.js #}
-        <li id='ticket-list-item-{{ ticket.ticketId }}'
+        {% raw %}
+        <li ng-repeat='ticket in tickets' id='ticket-list-item-{{ ticket.ticketId }}'
                 class='ticket-list-type-{{ ticket.ticketStatusName }}'>
             <p class='tl-username'>
             {{ ticket.userName }} ( {{ ticket.userEmail }} )
@@ -32,6 +32,7 @@
 
             <p class='tl-ticketcontents'>{{ ticket.ticketContents }}</p>
 
+            <!--
             {% if ticket.ticketMentorData == None %}
             <textarea class='tl-ticketmentordata'></textarea>
             {% else %}
@@ -39,9 +40,10 @@
                 {{ ticket.ticketMentorData }}
             </textarea>
             {% endif %}
+            -->
 
             <button
-                onclick="mentorship.sendDeleteTicket({{ ticket.ticketId }});">
+                ng-click="mentorship.sendDeleteTicket(ticket.ticketId);">
                 Nuke it
             </button>
 
@@ -54,31 +56,25 @@
             </select>
 
             <button class="send-message"
-                onclick="sendAdminMessage({{ ticket.ticketId }});">
+                ng-click="sendAdminMessage(ticket.ticketId);">
                 Send message
             </button>
 
             <select class='tl-status' autocomplete='off'>
-                {% for ticket_status in ticket_statuses %}
-                {% if ticket_status == ticket.ticketStatusName %}
-                <option value='{{ ticket_status }}' selected='selected'>
-                {% else %}
-                <option value='{{ ticket_status }}'>
-                {% endif %}
-                {{ ticket_status }}
+                <option ng-repeat='ticketStatus in ticketStatuses'
+                    ng-value='ticketStatus' ng-selected='ticketStatus === ticket.ticketStatusName'>
+                {{ ticketStatus }}
                 </option>
-                {% endfor %}
             </select>
 
             <button
-                onclick="mentorship.sendModifyTicket({{ ticket.ticketId }});">
+                ng-click="mentorship.sendModifyTicket(ticket.ticketId);">
                 Update
             </button>
         </li>
-    {% endfor %}
+        {% endraw %}
     </ul>
 
 <script type="text/javascript" src="/static/javascripts/adminchat.js"></script>
-<script type="text/javascript" src="/static/javascripts/services.js"></script>
 
 {% endblock %}

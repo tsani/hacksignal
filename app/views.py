@@ -49,4 +49,5 @@ def admin_panel(ticket_status):
     return render_template('tickets_admin.html',
             tickets=tickets,
             ticket_statuses=ticket_statuses,
-            password=app.config['ADMIN_MESSAGE_PASSWORD'])
+            password=app.config['ADMIN_MESSAGE_PASSWORD'],
+            angular_app='ticketApp')
