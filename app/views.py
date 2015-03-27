@@ -22,7 +22,7 @@ def mentor_request():
             return render_template('message.html', message=str(e))
 
         try:
-            ticket_id = Database.create_ticket(
+            ticket = Database.create_ticket(
                     user_id,
                     form.ticket_table_number.data,
                     form.ticket_contents.data,
@@ -30,7 +30,7 @@ def mentor_request():
         except ValueError as e:
             return "database is totally borked"
 
-        return render_template('chat.html', token=ticket['ticketId'])
+        return render_template('chat.html', ticket=ticket)
 
     return render_template('help.html',
             title='Mentor me!',
