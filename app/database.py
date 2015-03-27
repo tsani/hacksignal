@@ -121,7 +121,7 @@ class RealDatabase:
                     ticket_status_id))
         conn.commit()
         (ticket_id,) = cur.fetchone()
-        return ticket_id
+        return Database.get_ticket(ticket_id)
 
     @staticmethod
     def update_ticket_status(ticket_id, ticket_status_name=None,
