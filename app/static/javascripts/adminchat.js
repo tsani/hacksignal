@@ -53,11 +53,10 @@ app.controller('TicketListController',
             $scope.sendAdminMessage = function(ticketId) {
                 var ticketLi = document.getElementById(
                         'ticket-list-item-' + ticketId);
-                var user = $(ticketLi).find('.tl-email').text().trim();
                 var msgContent = $(ticketLi).find('option:selected').val();
                 socket.emit('admin message', {
                     data: msgContent,
-                    destination: user
+                    destination: ticketId.toString()
                 });
 
                 return false;

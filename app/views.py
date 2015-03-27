@@ -30,7 +30,7 @@ def mentor_request():
         except ValueError as e:
             return "database is totally borked"
 
-        return render_template('chat.html', token=form.user_email.data)
+        return render_template('chat.html', token=ticket['ticketId'])
 
     return render_template('help.html',
             title='Mentor me!',
