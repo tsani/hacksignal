@@ -12,4 +12,4 @@ class MentorRequestForm(Form):
         DataRequired(), Length(max=150)])
     ticket_table_number = IntegerField('Table number', validators=[
         DataRequired(), NumberRange(min=0, max=1337)])
-    #recaptcha = RecaptchaField()
+    recaptcha = RecaptchaField()
