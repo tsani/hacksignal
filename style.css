@@ -8,6 +8,8 @@ body {
   font-family: "PT Sans Narrow";
   color: #222;
   background-color: #222;
+  padding: 0;
+  margin: 0;
 }
 
 header {
@@ -30,6 +32,18 @@ h1 {
 	margin: 0;
 }
 
+h2 {
+	color: #eee;
+	font-size: 40px;
+	margin: 40px 0;
+	padding: 0;
+}
+
+h3 {
+	margin: 0;
+	padding: 0;
+}
+
 #section1 {
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -38,6 +52,49 @@ h1 {
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
+}
+
+#section2 {
+	background-color: #CC543D;
+	padding: 20px;
+}
+
+#beta-interest {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+	padding: 20px 10px;
+}
+
+.cta {
+	margin: 0 40px 0 0;
+	font-size: 30px;
+}
+
+#interest-email {
+	height: 60px;
+	padding: 0 40px;
+	font-size: 20px;
+	border: 1px #aaa solid;
+	border-radius: 8px;
+	background-color: #eee;
+	font-family: "PT Sans Narrow";
+	margin: 0 20px;
+}
+
+#interest-submit {
+	height: 50px;
+	background-color: #222;
+	border: 1px #333 solid;
+	border-radius: 8px;
+	font-family: "PT Sans Narrow";
+	padding: 0 30px;
+	margin: 0;
+	cursor: pointer;
+	color: #eee;
+	font-size: 20px;
+	font-weight: 700;
 }
 
 .red {
