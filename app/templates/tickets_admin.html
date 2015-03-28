@@ -18,63 +18,69 @@
         {% raw %}
         <li ng-repeat='ticket in tickets' id='ticket-list-item-{{ ticket.ticketId }}'
                 class='ticket-list-type-{{ ticket.ticketStatusName }}'>
-            <p class='tl-username'>
-            {{ ticket.userName }} ( {{ ticket.userEmail }} )
-            </p>
+            <div>
+                <p class='tl-ticketnumber'>
+                Ticket #{{ ticket.ticketId }}
+                </p>
 
-            <p class='tl-email' style='display: none;'>
-                {{ ticket.userEmail }}
-            </p>
+                <p class='tl-username'>
+                {{ ticket.userName }} ( {{ ticket.userEmail }} )
+                @ Table #{{ ticket.ticketTableNumber }}
+                </p>
 
-            <p class='tl-ticketstatus'>
-            {{ ticket.ticketStatusName }}
-            </p>
+                <p class='tl-email' style='display: none;'>
+                    {{ ticket.userEmail }}
+                </p>
 
-            <p class='tl-tablenumber'>
-            table #{{ ticket.ticketTableNumber }}
-            </p>
+                <p class='tl-ticketstatus'>
+                {{ ticket.ticketStatusName }}
+                </p>
 
-            <p class='tl-ticketcontents'>{{ ticket.ticketContents }}</p>
+                <p class='tl-ticketcontents'>
+                <span class='label-bold'>Contents:</span>
+                {{ ticket.ticketContents }}
+                </p>
 
-            <!--
-            {% if ticket.ticketMentorData == None %}
-            <textarea class='tl-ticketmentordata'></textarea>
-            {% else %}
-            <textarea class='tl-ticketmentordata' autocomplete='off'>
-                {{ ticket.ticketMentorData }}
-            </textarea>
-            {% endif %}
-            -->
+                <button
+                    ng-click="deleteTicket(ticket.ticketId);">
+                    Delete
+                </button>
 
-            <button
-                ng-click="deleteTicket(ticket.ticketId);">
-                Nuke it
-            </button>
+                <select class="response-options">
+                    <option value="Your mentor is on their way!">Dispatched</option>
+                    <option value="There are no mentors available right now. We will let you know when one is free.">No mentor available</option>
+                    <option value="We can't seem to find you. Where are you located?">Can't find</option>
+                    <option value="Could you give some more details about your issue?">More details</option>
+                    <option value="No problem! Happy hacking :)">You're welcome</option>
+                </select>
 
-            <select class="response-options">
-                <option value="Your mentor is on their way!">Dispatched</option>
-                <option value="There are no mentors available right now. We will let you know when one is free.">No mentor available</option>
-                <option value="We can't seem to find you. Where are you located?">Can't find</option>
-                <option value="Could you give some more details about your issue?">More details</option>
-                <option value="No problem! Happy hacking :)">You're welcome</option>
-            </select>
+                <button class="send-message"
+                    ng-click="sendAdminMessage(ticket.ticketId);">
+                    Send message
+                </button>
 
-            <button class="send-message"
-                ng-click="sendAdminMessage(ticket.ticketId);">
-                Send message
-            </button>
+                <select class='tl-status' autocomplete='off' ng-model='ticket.ticketStatusName' ng-change='updateTicket(ticket.ticketId);'>
+                    <option ng-repeat='ticketStatus in ticketStatuses'
+                        ng-value='ticketStatus' ng-selected='ticketStatus === ticket.ticketStatusName'>
+                    {{ ticketStatus }}
+                    </option>
+                </select>
 
-            <select class='tl-status' autocomplete='off'>
-                <option ng-repeat='ticketStatus in ticketStatuses'
-                    ng-value='ticketStatus' ng-selected='ticketStatus === ticket.ticketStatusName'>
-                {{ ticketStatus }}
-                </option>
-            </select>
-
-            <button
-                ng-click="mentorship.sendModifyTicket(ticket.ticketId);">
-                Update
-            </button>
+                <button
+                    ng-click="mentorship.sendModifyTicket(ticket.ticketId);">
+                    Update
+                </button>
+            </div>
+            <div class='chatlog'>
+                <p ng-repeat='message in chat[ticket.ticketId]' class='{{ message.type }}'>
+                <span class='label-bold'>{{ message.sender }}:</span>
+                {{ message.data }}
+                </p>
+            </div>
+            <form class="chatinput" ng-submit='sendChatMessage(ticket.ticketId)'>
+                <input placeholder="Message the hacker..." type="text"></input>
+                <input type='submit' onclick='false' value='Send'>
+            </form>
         </li>
         {% endraw %}
     </ul>

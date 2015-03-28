@@ -15,18 +15,18 @@
 		<li><span class="label-bold">Signal content: </span>
         <span id='ticket-contents'></span>
         </li>
-        #}
 		<li><span class="label-bold">Signal status: </span>
         <span id='ticket-status'> {{ ticket.ticketStatusName }} </span>
         </li>
+        #}
 	</ul>
 </div>
-<div id="chatlog">
+<div class="chatlog bigchatlog">
 	<h3>You are chatting with the mentorship operator. DO NOT REFRESH THIS PAGE.</h3>
 </div>
-<form id="chatinput">
+<form class="chatinput" onsubmit='return sendChatMessage();'>
 	<input id="msg-content" placeholder="Message the operator..." type="text"></input>
-	<input id="submit-button" type='submit' onclick='false' value='Send'>
+	<input id="submit-button" type='submit' value='Send'>
 </form>
 <script type="text/javascript" src="/static/javascripts/chat.js"></script>
 {% endblock %}

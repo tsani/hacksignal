@@ -60,6 +60,12 @@ def modify_ticket(ticket_id):
                 "status": "failed",
                 "message": "could not update ticket status: " + str(e)
             })
+        else:
+            for r in [str(ticket_id), '__admin__']:
+                socketio.emit('update ticket', {
+                    'ticketId': ticket_id,
+                    'ticketStatusName': request_data['ticketStatusName']
+                }, room=r, namespace='/chat');
 
     if 'ticketMentorData' in request_data:
         did_something = True

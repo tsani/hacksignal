@@ -30,18 +30,21 @@ def admin_authenticate(inner):
 
 @socketio.on('chat message', namespace='/chat')
 def chat_message(message):
+    print 'dispatching chat message'
     emit('chat message', {
-        'sender': message['sender'],
+        # The username is established in the session upon authenticating
+        'sender': session['username'],
         'data': message['data']
     }, room='__admin__')
 
     emit('chat message', {
-        'sender': message['sender'],
+        'sender': session['username'],
         'data': message['data']
     })
 
 @socketio.on('auth', namespace='/chat')
 def socket_auth(req):
+    session['username'] = req['username']
     join_room(req['username'])
     emit('server message', {
         'sender': 'Server',
@@ -68,19 +71,23 @@ def admin_message(req):
         return None
 
     try:
+        # Dispatch the message to the destination
         emit('admin message', {
             'sender': 'Operator', # TODO operator name
             'data': req['data'],
         }, room=req['destination'])
+        print 'dispatched message to', req['destination']
     except Exception as e:
         emit('error message', {
             'data': str(e)
         })
     else:
+        # Echo the message back to the admins
         emit('admin message', {
             'sender': 'Operator', # TODO operator name
             'data': req['data'],
-        })
+            'destination': req['destination'],
+        }, room='__admin__')
 
 @socketio.on('connect', namespace='/chat')
 def test_connect():

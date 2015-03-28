@@ -11,6 +11,7 @@ body {
     font-family: PT Sans Narrow, sans-serif;
     color: #222;
     overflow-x: hidden;
+    font-size: 14px;
 }
 
 p {
@@ -127,40 +128,47 @@ label input {
 
 /* chat */
 
-#chatlog {
+.chatlog {
 	background-color: white;
-	height: 60vh;
 	border: 1px solid #ccc;
-	padding: 25px;
+	padding: 2em;
 	overflow-y: auto;
+    min-height: 6em;
+    max-height: 50vh;
 }
 
-#chatinput {
-	margin-bottom: 40px;
+.bigchatlog {
+	height: 60vh;
 }
 
-#chatinput input {
-	width: 80%;
-	height: 40px;
-	font-size: 14px;
+.chatinput {
+	margin-bottom: 2em;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-item: center;
+}
+
+.chatinput input[type='text'] {
+	width: 90%;
+    line-height: 1.85em;
 	font-family: PT Sans Narrow;
 	padding: 0 20px;
     border: 1px solid #ccc;
 }
 
-#chatinput button {
-	height: 39px;
+.chatinput input[type='submit'] {
+    line-height: 1.85em;
 	cursor: pointer;
-	font-size: 14px;
 	font-family: PT Sans Narrow;
 	font-weight: bold;
-	text-transform: uppercase;
-	padding: 0 40px;
+	font-variant: small-caps;
+	padding: 0 2em;
 	background-color: #222;
-	/*background-color: white;*/
 	box-shadow: none;
 	border: none;
 	color: white;
+    width: 10%;
 }
 
 @media screen and (max-width: 610px) {
@@ -218,5 +226,5 @@ label input {
 }
 
 .label-bold {
-	font-weight: 800;
+	font-weight: bold;
 }
