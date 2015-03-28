@@ -1,3 +1,49 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700);
+
+* {
+	box-sizing: border-box;
+}
+
 body {
-  font-family: Helvetica Neue;
+  font-family: "PT Sans Narrow";
+  color: #222;
+  background-color: #222;
+}
+
+header {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#logo {
+	width: 200px;
+	cursor: pointer;
+}
+
+h1 {
+	font-size: 100px;
+	padding: 10px 20px;
+	margin: 0;
+}
+
+#section1 {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.red {
+	color: #CC543D;
+}
+
+.light {
+	background-color: #eee;
 }
