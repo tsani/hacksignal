@@ -126,6 +126,19 @@ h3 {
 
 .red {
 	color: #DD4425;
+	-webkit-transition: color 500ms linear;
+    -moz-transition: color 500ms linear;
+    	-o-transition: color 500ms linear;
+    		-ms-transition: color 500ms linear;
+    			transition: color 500ms linear;
+}
+
+.hidden {
+	-webkit-transition: color 500ms linear;
+    -moz-transition: color 500ms linear;
+    	-o-transition: color 500ms linear;
+    		-ms-transition: color 500ms linear;
+    			transition: color 500ms linear;
 }
 
 .light {
