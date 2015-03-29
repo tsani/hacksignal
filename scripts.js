@@ -1,5 +1,5 @@
 $("#logo").click(function() {
-	$("body").toggleClass("light");
-	$("#hidden").toggleClass("red");
+	$("body").addClass("light");
+	$("#hidden").addClass("red");
 	$("html, body").animate({scrollTop:600}, 1000);
 });
