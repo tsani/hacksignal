@@ -74,6 +74,10 @@ h3 {
 	padding: 20px;
 }
 
+#section3 {
+	height: 100vh;
+}
+
 #beta-interest {
 	display: -webkit-flex;
 	display: -ms-flexbox;
