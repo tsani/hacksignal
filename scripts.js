@@ -41,11 +41,30 @@ $(".right-button").click(function() {
 });
 
 $("#beta-interest").submit(function(event) {
-	$("#beta-full, #beta-full *, #pop-up-overlay").show();
+	$("#beta-full, #beta-full *, #pop-up-overlay").show(500);
 	event.preventDefault(); 
 	$("#full-email").val($("#interest-email").val());
 });
 
 $("#pop-up-overlay").click(function() {
-	$("#beta-full, #pop-up-overlay").hide();
+	$("#beta-full, #pop-up-overlay").hide(500);
+});
+
+$("#beta-full").submit(function(event) {
+	event.preventDefault(); 
+	Parse.initialize("VZnzhx2yDi4XARcEY8FrT7cYzJPRdG9UJNwA4Xef", "z8ULgqRkygDY5uUvClqZhay5FOnwXrdBnnanK3xg");
+	var betaUser = Parse.Object.extend("BetaInterest");
+	var betaUser = new betaUser();
+	betaUser.set({
+		"name": $("input[name='name']").val(),
+		"email": $("input[name='email']").val(),
+		"event": $("input[name='event']").val(),
+		"date": $("input[name='date']").val(),
+		"website": $("input[name='site']").val(),
+		"hackers": $("input[name='hackers']").val(),
+	});
+	betaUser.save().then(function(object) {
+	  alert("Thank you for your interest! The HackSignal team will be in touch soon.");
+	});
+	$("#beta-full, #pop-up-overlay").hide(500);
 });
