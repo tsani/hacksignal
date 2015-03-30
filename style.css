@@ -257,5 +257,9 @@ h3 {
 	}
 	#section1 {
 		height: auto;
+		padding-bottom: 40px;
+	}
+	#section1 h2 {
+		margin: 10px 15px;
 	}
 }
