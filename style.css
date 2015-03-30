@@ -156,6 +156,71 @@ h3 {
 	letter-spacing: 1px;
 }
 
+#pop-up-overlay {
+	display: none;
+	position: fixed;
+	z-index: 5;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+#pop-up, #pop-up * {
+	display: none;
+}
+
+#beta-full {
+	display: none;
+    position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 80%;
+	background-color: #eee;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	z-index: 10;
+	padding: 30px;
+	max-width: 450px;
+}
+
+#beta-full label {
+	font-size: 20px;
+	margin-right: 30px;
+}
+
+#beta-full input {
+	margin: 10px 0;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	font-family: "PT Sans Narrow";
+	font-size: 18px;
+	padding: 5px;
+}
+
+#submit-contain {
+	text-align: center;
+	margin-top: 20px; 
+}
+
+#beta-submit {
+	height: 50px;
+	width: 70%;
+	background-color: #222;
+	border: 1px #333 solid;
+	border-radius: 8px;
+	font-family: "PT Sans Narrow";
+	padding: 0 30px;
+	cursor: pointer;
+	color: #eee;
+	font-size: 20px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
 .toggle-set * {
 	background-color: #222;
 	display: inline-block;

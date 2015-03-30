@@ -39,3 +39,13 @@ $(".right-button").click(function() {
 	$("#screenshot2").hide();
 	$("#screenshot3").show();
 });
+
+$("#beta-interest").submit(function(event) {
+	$("#beta-full, #beta-full *, #pop-up-overlay").show();
+	event.preventDefault(); 
+	$("#full-email").val($("#interest-email").val());
+});
+
+$("#pop-up-overlay").click(function() {
+	$("#beta-full, #pop-up-overlay").hide();
+});
