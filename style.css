@@ -197,10 +197,22 @@ h3 {
 	align-items: center;
 }
 
-#screenshot {
-	width: 40%;
+#screenshot1 {
+	width: 80%;
 	margin: 40px 20px;
 	border: 1px solid #ccc;
+}
+
+#screenshot2 {
+	width: 80%;
+	margin: 40px 20px;
+	border: 1px solid #ccc;
+	display: none;
+}
+
+#screenshot3 {
+	display: none;
+	margin: 40px 20px;
 }
 
 .red {

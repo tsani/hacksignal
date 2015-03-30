@@ -16,16 +16,25 @@ $(".center-button").click(function() {
 	$(".center-button").addClass("active");
 	$(".left-button").removeClass("active");
 	$(".right-button").removeClass("active");
+	$("#screenshot1").hide();
+	$("#screenshot2").show();
+	$("#screenshot3").hide();
 });
 
 $(".left-button").click(function() {
 	$(".center-button").removeClass("active");
 	$(".left-button").addClass("active");
 	$(".right-button").removeClass("active");
+	$("#screenshot1").show();
+	$("#screenshot2").hide();
+	$("#screenshot3").hide();
 });
 
 $(".right-button").click(function() {
 	$(".center-button").removeClass("active");
 	$(".left-button").removeClass("active");
 	$(".right-button").addClass("active");
+	$("#screenshot1").hide();
+	$("#screenshot2").hide();
+	$("#screenshot3").show();
 });
