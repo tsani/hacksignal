@@ -327,4 +327,12 @@ h3 {
 	#section1 h2 {
 		margin: 10px 15px;
 	}
+	#beta-full input {
+		margin: 5px 0;
+		font-size: 15px;
+	}
+	#beta-full label {
+		font-size: 15px;
+		margin-right: 15px;
+	}
 }
