@@ -7,6 +7,11 @@ $("#logo").click(function() {
     $("#logo").css("cursor", "default");
 });
 
+$(window).scroll(function() {
+  	$("body").addClass("light");
+	$("#hidden").addClass("red");
+});
+
 $("#section3").click(function() {
 	$('html, body').animate({
         scrollTop:$('#section4').offset().top

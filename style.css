@@ -85,9 +85,15 @@ h3 {
 	font-size: 20px;
 	text-transform: uppercase;
 	height: 70px;
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	cursor: pointer;
 }
 
@@ -105,7 +111,9 @@ h3 {
 	-webkit-align-items: center;
 	    -ms-flex-align: center;
 	        align-items: center;
-	flex-direction: column;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
 	color: #222;
 	background-color: #eee;
 }
@@ -176,7 +184,8 @@ h3 {
     position: fixed;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
 	width: 80%;
 	background-color: #eee;
 	border-radius: 8px;
@@ -258,9 +267,15 @@ h3 {
 }
 
 .img-set {
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
 
 #screenshot1 {
