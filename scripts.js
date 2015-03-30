@@ -4,6 +4,7 @@ $("#logo").click(function() {
 	$('html, body').animate({
         scrollTop:$('#section2')[0].scrollHeight
     }, 500);
+    $("#logo").css("cursor", "default");
 });
 
 $("#section3").click(function() {
