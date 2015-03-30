@@ -45,6 +45,7 @@ h2 {
 	margin: 40px 0;
 	padding: 0;
 	letter-spacing: 1px;
+	text-align: center;
 }
 
 h3 {
@@ -248,5 +249,13 @@ h3 {
 	h2 {
 		font-size: 10vw;
 		text-align: center;
+	}
+	.toggle-set * {
+		font-size: 16px;
+		width: 100px;
+		padding: 10px 5px;
+	}
+	#section1 {
+		height: auto;
 	}
 }
