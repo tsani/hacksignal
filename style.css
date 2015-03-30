@@ -41,7 +41,6 @@ h1 {
 }
 
 h2 {
-	color: #eee;
 	font-size: 40px;
 	margin: 40px 0;
 	padding: 0;
@@ -69,13 +68,45 @@ h3 {
 	height: 100vh;
 }
 
+#section1 h2 {
+	color: #eee;
+}
+
 #section2 {
 	background-color: #DD4425;
 	padding: 20px;
 }
 
 #section3 {
-	height: 100vh;
+	background-color: #222;
+	color: #eee;
+	text-align: center;
+	font-size: 20px;
+	text-transform: uppercase;
+	height: 70px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+#section3:hover {
+	background-color: #2a2a2a;
+}
+
+#section4 {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	flex-direction: column;
+	color: #222;
+	background-color: #eee;
 }
 
 #beta-interest {
@@ -122,6 +153,53 @@ h3 {
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 1px;
+}
+
+.toggle-set * {
+	background-color: #222;
+	display: inline-block;
+	padding: 20px;
+	font-family: "PT Sans Narrow";
+	font-size: 20px;
+	border: none;
+	width: 150px;
+	color: #fff;
+	text-align: center;
+	cursor: pointer;
+}
+
+.active {
+	background-color: #DD4425;
+}
+
+.left-button {
+	-webkit-border-top-left-radius: 8px;
+	-webkit-border-bottom-left-radius: 8px;
+	-moz-border-radius-topleft: 8px;
+	-moz-border-radius-bottomleft: 8px;
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+
+.right-button {
+	-webkit-border-top-right-radius: 8px;
+	-webkit-border-bottom-right-radius: 8px;
+	-moz-border-radius-topright: 8px;
+	-moz-border-radius-bottomright: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+.img-set {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#screenshot {
+	width: 40%;
+	margin: 40px 20px;
+	border: 1px solid #ccc;
 }
 
 .red {
