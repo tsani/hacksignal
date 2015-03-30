@@ -74,7 +74,7 @@ h3 {
 
 #section2 {
 	background-color: #DD4425;
-	padding: 20px;
+	padding: 0;
 }
 
 #section3 {
@@ -166,6 +166,7 @@ h3 {
 	color: #fff;
 	text-align: center;
 	cursor: pointer;
+	transition: background-color 200ms linear;
 }
 
 .active {

@@ -2,7 +2,13 @@ $("#logo").click(function() {
 	$("body").addClass("light");
 	$("#hidden").addClass("red");
 	$('html, body').animate({
-        scrollTop: $('#section2')[0].scrollHeight
+        scrollTop:$('#section2')[0].scrollHeight
+    }, 500);
+});
+
+$("#section3").click(function() {
+	$('html, body').animate({
+        scrollTop:$('#section4').offset().top
     }, 500);
 });
 
