@@ -34,6 +34,10 @@ header {
 	margin-top: 40px;
 }
 
+a {
+	color: #DD4425;
+}
+
 h1 {
 	font-size: 100px;
 	padding: 10px 20px;
@@ -51,6 +55,11 @@ h2 {
 h3 {
 	margin: 0;
 	padding: 0;
+}
+
+h4 {
+	font-weight: 400;
+	font-size: 36px;
 }
 
 #section1 {
@@ -116,6 +125,22 @@ h3 {
 	        flex-direction: column;
 	color: #222;
 	background-color: #eee;
+}
+
+#section5 {
+	background-color: #222;
+	color: #eee;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 5% 10%;
+	text-align: center;
+}
+
+footer {
+	background-color: #ccc;
+	padding: 2% 5%;
 }
 
 #beta-interest {
@@ -207,6 +232,10 @@ h3 {
 	font-family: "PT Sans Narrow";
 	font-size: 18px;
 	padding: 5px;
+	shadow: #DD4425;
+	outline-color: rgba(221, 68, 37, 0.1);
+	outline-offset: -3px;
+	outline-width: 5px;
 }
 
 #submit-contain {
@@ -307,6 +336,13 @@ h3 {
 
 .light {
 	background-color: #eee;
+}
+
+.bragging {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin: 10px 15px;
 }
 
 @media screen and (max-width: 960px) {
