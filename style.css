@@ -28,6 +28,12 @@ header {
 	        align-items: center;
 }
 
+#social {
+	position: fixed;
+	bottom: 0;
+	right: -80px;
+}
+
 #logo {
 	width: 200px;
 	cursor: pointer;
