@@ -10,5 +10,4 @@ socketio = SocketIO(app)
 
 from app import views
 from app import api
-from app import config
 from app import chat
